@@ -1,7 +1,7 @@
 {
   "name": "svg_fallback",
   "description": "",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "homepage": "",
   "author": {
     "name": "yoksel",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "none"
+    "url": "https://github.com/yoksel/svg-fallback"
   },
   "bugs": {
     "url": ""
