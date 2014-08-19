@@ -1,0 +1,25 @@
+svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.{{prefix}} {
+  display: block;
+  float: right;
+  width: 5em;
+  height: 5em;
+  border: 2px solid #DDD;
+}
+
+.ie8 .{{prefix}} {
+  background-image: url({{{spriteurl}}});
+}
+
+{{#icons}}
+.{{prefix}}--{{name}} {
+    width: {{width}};
+    height: {{height}};
+    background-position: {{x}} {{y}};
+    }
+{{/icons}}

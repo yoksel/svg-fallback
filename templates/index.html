@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Icons preview</title>
+    {{#resultCss}}
+    <link rel="stylesheet" href="{{{url}}}">
+    {{/resultCss}}
+    <link rel="stylesheet" href="./assets/style.css">
+
+</head>
+<body>
+
+    <div class="svg-defs">
+        <div id="svg-icons">
+            {{#resultSvg}}
+            <div data-folder="{{name}}">
+                {{{symbols}}}
+            </div>
+            {{/resultSvg}}
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div id="result"></div>
+    </div>
+
+    <script>
+    var iconsDataList = {{{iconsDataList}}}</script>
+    <script src="./assets/script.js"></script>
+</body>
+</html>
