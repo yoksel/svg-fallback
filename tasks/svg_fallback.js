@@ -52,8 +52,6 @@ module.exports = function(grunt) {
         // Create destinantion folder
         grunt.file.mkdir(dest);
 
-        // console.log(svgFallbacks.test());
-
         grunt.log.writeln("\n");
 
         //------------------------
@@ -63,14 +61,6 @@ module.exports = function(grunt) {
 
 
         var configFiles = grunt.file.expand(configPath);
-
-            // console.log(src);
-
-        // console.log("configPath");
-        // console.log(configPath);
-
-        // console.log("configFiles");
-        // console.log(configFiles);
 
         configFiles.forEach(function(filePath) {
             var folder = getFolder(filePath);
@@ -85,25 +75,6 @@ module.exports = function(grunt) {
         var newConfig = {};
 
         var sources = grunt.file.expand(srcFilesPath);
-
-        // srcFiles.forEach(function(filePath){
-
-        // });
-
-        // this.files.forEach(function(f) {
-
-        //     var sources = f.src.filter(function(filePath) {
-
-        //         // Warn on and remove invalid source files (if nonull was set).
-        //         if (!grunt.file.exists(filePath)) {
-        //             grunt.log.warn('Source file "' + filePath + '" not found.');
-        //             return false;
-        //         } else {
-        //             return true;
-        //         }
-        //     });
-        //  });
-
 
         // 1. Create  SVG library
         //------------------------------------------
