@@ -1,0 +1,54 @@
+.ie8 .testicon {
+    background-image: url(testicon.png);
+    }
+
+.testicon--arrow-up {
+    width: 30px;
+    height: 43px;
+    background-position: -380px -160px;
+    }
+.testicon--arrow-up--green {
+    width: 30px;
+    height: 43px;
+    background-position: -340px -160px;
+    }
+.testicon--arrow-up--50 {
+    width: 50px;
+    height: 72px;
+    background-position: 0 -226px;
+    }
+.testicon--arrow-up--150--orangered {
+    width: 150px;
+    height: 216px;
+    background-position: 0 0;
+    }
+.testicon--home {
+    width: 12px;
+    height: 12px;
+    background-position: -472px -160px;
+    }
+.testicon--home--hotpink {
+    width: 12px;
+    height: 12px;
+    background-position: -450px -160px;
+    }
+.testicon--home--150 {
+    width: 150px;
+    height: 150px;
+    background-position: -340px 0;
+    }
+.testicon--home--170--teal {
+    width: 170px;
+    height: 170px;
+    background-position: -160px 0;
+    }
+.testicon--home--20--yellowgreen {
+    width: 20px;
+    height: 20px;
+    background-position: -420px -160px;
+    }
+.testicon--remove {
+    width: 12px;
+    height: 12px;
+    background-position: -420px -190px;
+    }

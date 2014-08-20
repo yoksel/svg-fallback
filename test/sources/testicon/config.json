@@ -1,0 +1,24 @@
+{
+    "color": "orangered",
+    "icons": {
+        "arrow-up": [{
+            "width": "50"
+        }, {
+            "width": "150",
+            "color": "orangered"
+        }, {
+            "color": "green"
+        }],
+        "home": [{
+            "width": "150"
+        }, {
+            "width": "170",
+            "color": "teal"
+        }, {
+            "width": "20",
+            "color": "yellowgreen"
+        }, {
+            "color": "hotpink"
+        }]
+    }
+}

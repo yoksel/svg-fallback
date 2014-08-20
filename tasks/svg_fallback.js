@@ -26,6 +26,8 @@ module.exports = function(grunt) {
             assetsFolder = path.resolve(currentFolder, "../assets"),
             src = this.data.src,
             dest = this.data.dest,
+            srcFilesPath = src + "**/*.svg",
+            configPath = src + "**/*.json",
             destFolderAbs = process.cwd() + "/" + dest,
             destIndex = dest + "index.html",
             destAssets = dest + "assets/",
@@ -59,7 +61,16 @@ module.exports = function(grunt) {
         // Get configs
         //---------------------------------------
 
-        var configFiles = grunt.file.expand("sources/**/*.json");
+
+        var configFiles = grunt.file.expand(configPath);
+
+            // console.log(src);
+
+        // console.log("configPath");
+        // console.log(configPath);
+
+        // console.log("configFiles");
+        // console.log(configFiles);
 
         configFiles.forEach(function(filePath) {
             var folder = getFolder(filePath);
@@ -73,42 +84,50 @@ module.exports = function(grunt) {
 
         var newConfig = {};
 
-        this.files.forEach(function(f) {
+        var sources = grunt.file.expand(srcFilesPath);
 
-            var sources = f.src.filter(function(filePath) {
+        // srcFiles.forEach(function(filePath){
 
-                // Warn on and remove invalid source files (if nonull was set).
-                if (!grunt.file.exists(filePath)) {
-                    grunt.log.warn('Source file "' + filePath + '" not found.');
-                    return false;
-                } else {
-                    return true;
-                }
-            });
+        // });
 
-            // 1. Create  SVG library
-            //------------------------------------------
+        // this.files.forEach(function(f) {
 
-            // grunt.log.writeln("1. Create  SVG library");
-            createSvgLib(sources);
+        //     var sources = f.src.filter(function(filePath) {
 
-            // 2. Copy files
-            //------------------------------------------
-            // grunt.log.writeln("2. Copy files");
-            sources.forEach(function(filePath) {
-                var folder = getFolder(filePath);
+        //         // Warn on and remove invalid source files (if nonull was set).
+        //         if (!grunt.file.exists(filePath)) {
+        //             grunt.log.warn('Source file "' + filePath + '" not found.');
+        //             return false;
+        //         } else {
+        //             return true;
+        //         }
+        //     });
+        //  });
 
-                var destPath = svgPreparedFolder + folder + "/" + path.basename(filePath);
 
-                grunt.file.copy(filePath, destPath);
-            });
+        // 1. Create  SVG library
+        //------------------------------------------
 
-            // 3. Create files with requested sizes in names
-            //------------------------------------------
-            // grunt.log.writeln("3. Create files with requested sizes in names");
-            createFilesWithSizesInNames();
+        // grunt.log.writeln("1. Create  SVG library");
+        createSvgLib(sources);
 
+        // 2. Copy files
+        //------------------------------------------
+        grunt.log.writeln("2. Copy files");
+        sources.forEach(function(filePath) {
+            var folder = getFolder(filePath);
+
+            var destPath = svgPreparedFolder + folder + "/" + path.basename(filePath);
+
+            grunt.file.copy(filePath, destPath);
         });
+
+        // 3. Create files with requested sizes in names
+        //------------------------------------------
+        grunt.log.writeln("3. Create files with requested sizes in names");
+        createFilesWithSizesInNames();
+
+
 
         // 4. Change sizes and colors in SVG-files
         //------------------------------------------
@@ -153,6 +172,7 @@ module.exports = function(grunt) {
             var output = input.replace(new RegExp("[\r\n\t]", "g"), "");
             // remove xml tad and doctype
             output = output.replace(new RegExp("(<)(.*?)(xml |dtd)(.*?)(>)", 'g'), "");
+            output = output.replace(new RegExp("(<g></g>)", 'g'), "");
             return output;
         }
 
@@ -274,7 +294,7 @@ module.exports = function(grunt) {
             var file = params["file"];
             var props = params["props"];
 
-            var srcPath = "sources/" + folder + "/" + file + ".svg";
+            var srcPath = src + folder + "/" + file + ".svg";
             var newName = file;
 
             for (var key in props) {

@@ -20,10 +20,15 @@ module.exports = function(grunt) {
             padding: 10
         },
         your_target: {
-            src: 'sources/**/*.svg',
-            dest: 'result/'
+            src: 'test/sources/',
+            dest: 'test/result/'
         }
     },
+
+    // Unit tests.
+    nodeunit: {
+      tests: ['test/*_test.js']
+    }
 
   });
 
@@ -35,7 +40,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-  // By default, lint and run all tests.
   grunt.registerTask('default', ['svg_fallback']);
 
 };
