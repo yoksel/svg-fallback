@@ -4,8 +4,102 @@
     <meta charset="UTF-8">
     <title>Icons preview</title>
     <link rel="stylesheet" href="testicon/testicon.css">
-    <link rel="stylesheet" href="./assets/style.css">
+    <style>
+    BODY {
+    font: 16px/1.4 "Trebuchet MS", Arial, sans-serif;
+    }
 
+A {
+    color: tomato;
+    }
+
+H1 {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #CCC;
+    font: 3em/1.4 Georgia, serif;
+    text-align: center;
+    }
+
+H4 {
+    margin-bottom: .4em;
+    font: 2em/1.4 Georgia, serif;
+    color: steelblue;
+    }
+
+H5 {
+    font-size: 1em;
+    font-weight: normal;
+    }
+
+P {
+    margin: 1.5rem 0;
+    }
+UL {
+    padding: 0;
+    }
+LI {
+    list-style: none;
+    }
+
+.wrapper {
+    width: 650px;
+    margin: 4rem auto;
+    }
+
+TEXTAREA {
+    width: 100%;
+    height: 200px;
+    margin: 0 0 1em 0;
+    border: 1px solid #CCC;
+    border-radius: 10px;
+    }
+
+CODE {
+    padding: 0 7px;
+    background: palegoldenrod;
+    border-radius: 5px;
+    text-shadow: 1px 1px 0 white;
+    font: 14px/1 monospace;
+    color: #6a6315;
+    }
+
+CODE I {
+    font-style: italic;
+    color: black;
+    }
+
+.svg-defs {
+    display: none;
+    }
+.icons-list__item {
+    padding: 1em 0;
+    border-bottom: 1px solid #DDD;
+    }
+    .icons-list__item:after {
+        content: "";
+        display: table;
+        clear: both;
+        width: 100%;
+        }
+.icons-list__title {
+    display: inline-block;
+    margin: 0;
+    }
+
+svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    }
+
+.demo-icon {
+    display: block;
+    float: right;
+    border: 1px solid #DDD;
+    }
+
+    </style>
 </head>
 <body>
 
@@ -26,6 +120,64 @@
 
     <script>
     var iconsDataList = [{"folder":"testicon","iconsData":[{"name":"arrow-up","width":"30px","height":"43px","x":"-380px","y":"-160px"},{"name":"arrow-up--green","width":"30px","height":"43px","x":"-340px","y":"-160px"},{"name":"arrow-up--50","width":"50px","height":"72px","x":0,"y":"-226px"},{"name":"arrow-up--150--orangered","width":"150px","height":"216px","x":0,"y":0},{"name":"home","width":"12px","height":"12px","x":"-472px","y":"-160px"},{"name":"home--hotpink","width":"12px","height":"12px","x":"-450px","y":"-160px"},{"name":"home--150","width":"150px","height":"150px","x":"-340px","y":0},{"name":"home--170--teal","width":"170px","height":"170px","x":"-160px","y":0},{"name":"home--20--yellowgreen","width":"20px","height":"20px","x":"-420px","y":"-160px"},{"name":"remove","width":"12px","height":"12px","x":"-420px","y":"-190px"}]}]</script>
-    <script src="./assets/script.js"></script>
+    <script>var doc = document;
+var body = doc.querySelector("body");
+var result = doc.querySelector("#result");
+var svgDefs = doc.querySelector("#svg-defs");
+var svgIds = {};
+
+function showSvg () {
+    var output = "";
+    var symbols = doc.querySelectorAll("symbol");
+
+    if (symbols.length == 0 ) {
+        output  = "<span=\"result__error\">There is no symbols.</span>";
+        result.innerHTML = output ;
+        return;
+    }
+
+    for(var i = 0; i< symbols.length; i++){
+        var svg_id = symbols[i].getAttribute("id");
+        svgIds[svg_id] = svg_id;
+    }
+
+     for (var i = 0; i < iconsDataList.length; i++) {
+
+        var folder = iconsDataList[i]["folder"];
+        var iconsData = iconsDataList[i]["iconsData"];
+
+        output  += "<h4>Folder: " + folder +"</h4>";
+        output  += createIconsList(folder, iconsData);
+     }
+
+    result.innerHTML += output ;
+}
+
+function createIconsList(folder,items) {
+    var icons = "";
+
+    for (var i = 0; i < items.length; i++) {
+        var iconId = items[i].name;
+        var fullIconId = folder + "-" +iconId;
+        var spanClass = folder + " "+ folder +"--" + iconId;
+        spanClass += " demo-icon";
+
+        icons += "<li class=\"icons-list__item\">";
+        icons += "<h5 class=\"icons-list__title\">#" + fullIconId + "</h5>";
+
+        if (svgIds[fullIconId]){
+            icons += "<span class=\"" + spanClass + "\"><svg><use xlink:href=\"#" + fullIconId + "\"></svg></span>";
+        }
+
+        icons += "<span class=\"ie8\"><span class=\"" + spanClass + "\"></span></span>";
+        icons += "</li>";
+    }
+
+    icons ="<ul class=\"icons-list\">" + icons + "</ul>";
+
+    return icons;
+}
+
+showSvg();</script>
 </body>
 </html>

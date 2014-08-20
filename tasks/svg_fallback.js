@@ -665,8 +665,12 @@ module.exports = function(grunt) {
          */
         function createControlPage() {
             var indexTemplate = grunt.file.read(templatesFolder + "/index.html");
+            var jsFile = grunt.file.read(assetsFolder + "/script.js");
+            var cssFile = grunt.file.read(assetsFolder + "/style.css");
 
             var indexData = {
+                "js": jsFile,
+                "css": cssFile,
                 "resultCss": resultCss,
                 "resultSvg": resultSvg,
                 "iconsDataList": JSON.stringify(resultIconsData)
@@ -674,14 +678,6 @@ module.exports = function(grunt) {
 
             var outputIndex = mustache.render(indexTemplate, indexData);
             grunt.file.write(destIndex, outputIndex, "utf8");
-
-            var assetsFiles = grunt.file.expand(assetsFolder + "/*");
-
-            assetsFiles.forEach(function(filePath) {
-                var fileNameExt = path.basename(filePath);
-                grunt.file.copy(filePath, destAssets + fileNameExt);
-
-            });
 
             grunt.log.ok("Demo page is ready.");
 

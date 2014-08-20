@@ -1,6 +1,9 @@
 # svg_fallback
 
->
+Plugin takes folders with SVG and generates:
+
+1. SVG-library for using with 'use xlink:href="#symbolName"'
+2. Fallback for IE8: sprite + CSS.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -70,8 +73,8 @@ grunt.initConfig({
             padding: 10
         },
         your_target: {
-            src: 'sources/**/*.svg',
-            dest: 'result/'
+            src: 'test/sources/',
+            dest: 'test/result/'
         }
     }
 });

@@ -6,8 +6,9 @@
     {{#resultCss}}
     <link rel="stylesheet" href="{{{url}}}">
     {{/resultCss}}
-    <link rel="stylesheet" href="./assets/style.css">
-
+    <style>
+    {{{css}}}
+    </style>
 </head>
 <body>
 
@@ -27,6 +28,6 @@
 
     <script>
     var iconsDataList = {{{iconsDataList}}}</script>
-    <script src="./assets/script.js"></script>
+    <script>{{{js}}}</script>
 </body>
 </html>

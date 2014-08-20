@@ -26,8 +26,6 @@ function showSvg () {
 
         output  += "<h4>Folder: " + folder +"</h4>";
         output  += createIconsList(folder, iconsData);
-
-        // console.log(iconsDataList[i]["iconsData"]);
      }
 
     result.innerHTML += output ;
@@ -37,7 +35,6 @@ function createIconsList(folder,items) {
     var icons = "";
 
     for (var i = 0; i < items.length; i++) {
-        // console.log(iconsData[i]);
         var iconId = items[i].name;
         var fullIconId = folder + "-" +iconId;
         var spanClass = folder + " "+ folder +"--" + iconId;
