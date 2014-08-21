@@ -1,7 +1,7 @@
 {
   "name": "svg_fallback",
   "description": "",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "homepage": "",
   "author": {
     "name": "yoksel",
@@ -36,6 +36,7 @@
   "dependencies": {
     "async": "^0.9.0",
     "mustache": "^0.8.2",
+    "open": "0.0.5",
     "rimraf": "~2.2.8",
     "spritesmith": "^0.19.2",
     "svg-to-png": "^0.6.0"

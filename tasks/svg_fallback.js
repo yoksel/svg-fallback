@@ -15,7 +15,8 @@ var path = require('path'),
     mustache = require('mustache'),
     rmdir = require('rimraf'),
     util = require("util"),
-    async = require("async");
+    async = require("async"),
+    open = require("open");
 
 module.exports = function(grunt) {
 
@@ -662,6 +663,8 @@ module.exports = function(grunt) {
 
             var outputIndex = mustache.render(indexTemplate, indexData);
             grunt.file.write(destIndex, outputIndex, "utf8");
+
+            open(destIndex);
 
             grunt.log.ok("Demo page is ready.");
             grunt.log.writeln("----------------------------------");

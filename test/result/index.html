@@ -160,7 +160,7 @@ function showSvg () {
         var color = item["color"] ? item["color"] : "none";
         var iconsData = item["iconsData"];
 
-        output  += "<h4>Folder: " + folder +"</h4>";
+        output  += "<h4>Folder: " + folder +" (" + iconsData.length +")</h4>";
         output  += "Default color: " + color +" <span class=\"color\" style=\"background: " + color +"\"></span>";
         output  += createIconsList(folder, iconsData);
      }
