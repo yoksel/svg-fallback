@@ -50,6 +50,11 @@ LI {
     vertical-align: top;
     border: 2px solid #DDD;
     }
+.sizes {
+    padding: 0 3px;
+    background: #DDD;
+    font-size: .9em;
+    }
 .icons-list__item {
     padding: 1em 0;
     border-bottom: 2px solid #DDD;

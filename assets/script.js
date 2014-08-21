@@ -38,13 +38,18 @@ function createIconsList(folder,items) {
     var icons = "";
 
     for (var i = 0; i < items.length; i++) {
-        var iconId = items[i].name;
+        var item = items[i];
+        var iconId = item.name;
+        var width = item.width.replace("px","");
+        var height = item.height.replace("px","");
         var fullIconId = folder + "-" +iconId;
         var spanClass = folder + " "+ folder +"--" + iconId;
         spanClass += " demo-icon";
 
+        var sizes = "<span class=\"sizes\">" + width +"&times;" + height + "</span>";
+
         icons += "<li class=\"icons-list__item\">";
-        icons += "<h5 class=\"icons-list__title\">#" + fullIconId + "</h5>";
+        icons += "<h5 class=\"icons-list__title\">#" + fullIconId + " "+ sizes + "</h5>";
 
         icons += "<span class=\"ie8\"><span class=\"" + spanClass + "  demo-icon--png\"></span></span>";
 
