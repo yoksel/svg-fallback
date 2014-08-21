@@ -1,5 +1,9 @@
 # svg_fallback
 
+Generates SVG library and PNG+CSS fallback.
+
+>
+
 Plugin takes folders with SVG and generates:
 
 1. SVG-library for using with 'use xlink:href="#symbolName"'

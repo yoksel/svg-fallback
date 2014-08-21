@@ -52,10 +52,6 @@ module.exports = function(grunt) {
         // Create destinantion folder
         grunt.file.mkdir(dest);
 
-        grunt.log.writeln("\n");
-
-        //------------------------
-
         // Get configs
         //---------------------------------------
 
@@ -78,13 +74,10 @@ module.exports = function(grunt) {
 
         // 1. Create  SVG library
         //------------------------------------------
-
-        // grunt.log.writeln("1. Create  SVG library");
         createSvgLib(sources);
 
         // 2. Copy files
         //------------------------------------------
-        grunt.log.writeln("2. Copy files");
         sources.forEach(function(filePath) {
             var folder = getFolder(filePath);
 
@@ -95,22 +88,15 @@ module.exports = function(grunt) {
 
         // 3. Create files with requested sizes in names
         //------------------------------------------
-        grunt.log.writeln("3. Create files with requested sizes in names");
         createFilesWithSizesInNames();
-
-
 
         // 4. Change sizes and colors in SVG-files
         //------------------------------------------
 
-        // grunt.log.writeln("4. Change sizes and colors in SVG-files");
         changePreparedSvg();
-
 
         // 5. Convert SVG to PNG
         //------------------------------------------
-
-        // grunt.log.writeln("5. Convert SVG to PNG");
 
         var checkSvgs = grunt.file.isDir(svgProcessedFolder);
 
@@ -126,6 +112,7 @@ module.exports = function(grunt) {
 
         // 7. Create create control page
         //------------------------------------------
+
 
         // FUNCTIONS
         //---------------------------------------
@@ -233,6 +220,7 @@ module.exports = function(grunt) {
                 svgSymbols[folder] += createSymbol(grunt.file.read(filePath), filePath) + "\n";
             });
 
+            grunt.log.writeln("----------------------------------");
             grunt.log.ok("1. Create SVG library...");
 
             for (var key in svgSymbols) {
@@ -448,7 +436,6 @@ module.exports = function(grunt) {
             if (err) {
                 grunt.log.errorlns('A folder failed to process\n\n');
             } else {
-                // grunt.log.writeln("6. Create sprite from png, write CSS");
 
                 createSpritesByFolders();
             }
@@ -512,11 +499,9 @@ module.exports = function(grunt) {
 
                 if( !debug ){
                     rmdir(tempFolder, function() {
-                        // console.log(tempFolder + " is cleared");
                     });
                 }
 
-                // grunt.log.writeln("7. Create create control page");
                 createControlPage();
             }
         }
@@ -550,10 +535,7 @@ module.exports = function(grunt) {
             return 4;
         }
 
-        function sortByName(a, b) {
-            a = convertToVal(a.name);
-            b = convertToVal(b.name);
-
+        function simpleSort(a, b) {
             if (a < b) {
                 return -1;
             }
@@ -561,6 +543,12 @@ module.exports = function(grunt) {
                 return 1;
             }
             return 0;
+        }
+
+        function sortByName(a, b) {
+            a = convertToVal(a.name);
+            b = convertToVal(b.name);
+            return simpleSort(a,b);
         }
 
         function sortIconsToGroup(icons) {
@@ -591,38 +579,63 @@ module.exports = function(grunt) {
          * @param {Object} coordinates of created sprite
          */
         function writeCss(folder, coordinates) {
+
             var outputCss = "";
             var cssTemplate = grunt.file.read(templatesFolder + "/template.css");
             var filePath = folder + "/" + folder + ".css";
             var destCssFile = dest + filePath;
+            var prefixIe8Template = grunt.file.read(templatesFolder + "/prefix--ie8.css");
+            var prefixFillTemplate = grunt.file.read(templatesFolder + "/prefix--fill.css");
+            var iconFillTemplate = grunt.file.read(templatesFolder + "/icon--fill.css");
+            var iconNoFillTemplate = grunt.file.read(templatesFolder + "/icon--no-fill.css");
 
             var iconsData = {};
             iconsData.spriteurl = path.basename(dest + folder + "/" + folder + ".png");
             iconsData.prefix = folder;
+            iconsData.color = config[folder].color;
             iconsData.icons = [];
+
+            if (iconsData.color) {
+                outputCss += mustache.render(prefixFillTemplate, iconsData);
+            }
+
+            outputCss += mustache.render(prefixIe8Template, iconsData);
 
             for (var key in coordinates) {
                 var item = coordinates[key];
+                var iconTemplate = iconFillTemplate;
 
                 var fileName = path.basename(key, ".png");
+                var iconConfig = newConfig[folder][fileName];
+                var iconColor = iconConfig ? iconConfig.color : "";
 
-                iconsData.icons.push({
+                var iconData = {
+                    prefix: iconsData.prefix,
                     name: fileName,
                     width: checkUnits("width", item.width),
                     height: checkUnits("height", item.height),
                     x: checkUnits("x", item.x),
-                    y: checkUnits("y", item.y)
-                });
+                    y: checkUnits("y", item.y),
+                    color: iconColor
+                };
+
+                if( !iconData.color ) {
+                    iconTemplate = iconNoFillTemplate;
+                    }
+
+                outputCss += mustache.render(iconTemplate, iconData);
+
+                iconsData.icons.push(iconData);
             }
 
             iconsData.icons = sortIconsToGroup(iconsData.icons);
 
             resultIconsData.push({
                 "folder": folder,
-                "iconsData": iconsData.icons
+                "iconsData": iconsData.icons,
+                "color": iconsData.color
             });
 
-            outputCss = mustache.render(cssTemplate, iconsData);
             fs.writeFileSync(destCssFile, outputCss, 'utf8');
 
             resultCss.push({
@@ -651,6 +664,7 @@ module.exports = function(grunt) {
             grunt.file.write(destIndex, outputIndex, "utf8");
 
             grunt.log.ok("Demo page is ready.");
+            grunt.log.writeln("----------------------------------");
 
         }
 

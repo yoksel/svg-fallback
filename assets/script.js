@@ -20,11 +20,14 @@ function showSvg () {
     }
 
      for (var i = 0; i < iconsDataList.length; i++) {
+        var item = iconsDataList[i];
 
-        var folder = iconsDataList[i]["folder"];
-        var iconsData = iconsDataList[i]["iconsData"];
+        var folder = item["folder"];
+        var color = item["color"] ? item["color"] : "none";
+        var iconsData = item["iconsData"];
 
         output  += "<h4>Folder: " + folder +"</h4>";
+        output  += "Default color: " + color +" <span class=\"color\" style=\"background: " + color +"\"></span>";
         output  += createIconsList(folder, iconsData);
      }
 
@@ -43,11 +46,12 @@ function createIconsList(folder,items) {
         icons += "<li class=\"icons-list__item\">";
         icons += "<h5 class=\"icons-list__title\">#" + fullIconId + "</h5>";
 
+        icons += "<span class=\"ie8\"><span class=\"" + spanClass + "  demo-icon--png\"></span></span>";
+
         if (svgIds[fullIconId]){
-            icons += "<span class=\"" + spanClass + "\"><svg><use xlink:href=\"#" + fullIconId + "\"></svg></span>";
+            icons += "<span class=\"" + spanClass + " demo-icon--svg\"><svg><use xlink:href=\"#" + fullIconId + "\"></svg></span>";
         }
 
-        icons += "<span class=\"ie8\"><span class=\"" + spanClass + "\"></span></span>";
         icons += "</li>";
     }
 

@@ -47,34 +47,19 @@ LI {
     margin: 4rem auto;
     }
 
-TEXTAREA {
-    width: 100%;
-    height: 200px;
-    margin: 0 0 1em 0;
-    border: 1px solid #CCC;
-    border-radius: 10px;
-    }
-
-CODE {
-    padding: 0 7px;
-    background: palegoldenrod;
-    border-radius: 5px;
-    text-shadow: 1px 1px 0 white;
-    font: 14px/1 monospace;
-    color: #6a6315;
-    }
-
-CODE I {
-    font-style: italic;
-    color: black;
-    }
-
 .svg-defs {
     display: none;
     }
+.color {
+    display: inline-block;
+    width: 50px;
+    height: 1.2em;
+    vertical-align: top;
+    border: 2px solid #DDD;
+    }
 .icons-list__item {
     padding: 1em 0;
-    border-bottom: 1px solid #DDD;
+    border-bottom: 2px solid #DDD;
     }
     .icons-list__item:after {
         content: "";
@@ -94,10 +79,32 @@ svg {
     }
 
 .demo-icon {
+    position: relative;
     display: block;
     float: right;
+    margin-left: 3em;
     border: 1px solid #DDD;
     }
+    .demo-icon:before {
+        display: block;
+        position: absolute;
+        left: -2.65em;
+        top: -1.44em;
+        padding: 0 5px;
+        font-size: 0.8em;
+        -webkit-transform-origin: right bottom;
+        transform-origin: right bottom;
+        -webkit-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+        }
+        .demo-icon--svg:before {
+            content: "SVG";
+            background: yellowgreen;
+        }
+        .demo-icon--png:before {
+            content: "PNG";
+            background: skyblue;
+        }
 
     </style>
 </head>
@@ -119,7 +126,7 @@ svg {
     </div>
 
     <script>
-    var iconsDataList = [{"folder":"testicon","iconsData":[{"name":"arrow-up","width":"30px","height":"43px","x":"-380px","y":"-160px"},{"name":"arrow-up--green","width":"30px","height":"43px","x":"-340px","y":"-160px"},{"name":"arrow-up--50","width":"50px","height":"72px","x":0,"y":"-226px"},{"name":"arrow-up--150--orangered","width":"150px","height":"216px","x":0,"y":0},{"name":"home","width":"12px","height":"12px","x":"-472px","y":"-160px"},{"name":"home--hotpink","width":"12px","height":"12px","x":"-450px","y":"-160px"},{"name":"home--150","width":"150px","height":"150px","x":"-340px","y":0},{"name":"home--170--teal","width":"170px","height":"170px","x":"-160px","y":0},{"name":"home--20--yellowgreen","width":"20px","height":"20px","x":"-420px","y":"-160px"},{"name":"remove","width":"12px","height":"12px","x":"-420px","y":"-190px"}]}]</script>
+    var iconsDataList = [{"folder":"testicon","iconsData":[{"prefix":"testicon","name":"arrow-up","width":"30px","height":"43px","x":"-380px","y":"-160px","color":""},{"prefix":"testicon","name":"arrow-up--green","width":"30px","height":"43px","x":"-340px","y":"-160px","color":"green"},{"prefix":"testicon","name":"arrow-up--50","width":"50px","height":"72px","x":0,"y":"-226px"},{"prefix":"testicon","name":"arrow-up--150--steelblue","width":"150px","height":"216px","x":0,"y":0,"color":"steelblue"},{"prefix":"testicon","name":"home","width":"12px","height":"12px","x":"-472px","y":"-160px","color":""},{"prefix":"testicon","name":"home--hotpink","width":"12px","height":"12px","x":"-450px","y":"-160px","color":"hotpink"},{"prefix":"testicon","name":"home--150","width":"150px","height":"150px","x":"-340px","y":0},{"prefix":"testicon","name":"home--170--teal","width":"170px","height":"170px","x":"-160px","y":0,"color":"teal"},{"prefix":"testicon","name":"home--20--yellowgreen","width":"20px","height":"20px","x":"-420px","y":"-160px","color":"yellowgreen"},{"prefix":"testicon","name":"remove","width":"12px","height":"12px","x":"-420px","y":"-190px","color":""}],"color":"orangered"}]</script>
     <script>var doc = document;
 var body = doc.querySelector("body");
 var result = doc.querySelector("#result");
@@ -142,11 +149,14 @@ function showSvg () {
     }
 
      for (var i = 0; i < iconsDataList.length; i++) {
+        var item = iconsDataList[i];
 
-        var folder = iconsDataList[i]["folder"];
-        var iconsData = iconsDataList[i]["iconsData"];
+        var folder = item["folder"];
+        var color = item["color"] ? item["color"] : "none";
+        var iconsData = item["iconsData"];
 
         output  += "<h4>Folder: " + folder +"</h4>";
+        output  += "Default color: " + color +" <span class=\"color\" style=\"background: " + color +"\"></span>";
         output  += createIconsList(folder, iconsData);
      }
 
@@ -165,11 +175,12 @@ function createIconsList(folder,items) {
         icons += "<li class=\"icons-list__item\">";
         icons += "<h5 class=\"icons-list__title\">#" + fullIconId + "</h5>";
 
+        icons += "<span class=\"ie8\"><span class=\"" + spanClass + "  demo-icon--png\"></span></span>";
+
         if (svgIds[fullIconId]){
-            icons += "<span class=\"" + spanClass + "\"><svg><use xlink:href=\"#" + fullIconId + "\"></svg></span>";
+            icons += "<span class=\"" + spanClass + " demo-icon--svg\"><svg><use xlink:href=\"#" + fullIconId + "\"></svg></span>";
         }
 
-        icons += "<span class=\"ie8\"><span class=\"" + spanClass + "\"></span></span>";
         icons += "</li>";
     }
 

@@ -1,0 +1,6 @@
+.{{prefix}}--{{name}} {
+    width: {{width}};
+    height: {{height}};
+    background-position: {{x}} {{y}};
+    fill: {{color}};
+    }
