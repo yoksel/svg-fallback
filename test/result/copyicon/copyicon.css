@@ -4,24 +4,24 @@
 .ie8 .copyicon {
     background-image: url(copyicon.png);
     }
-.copyicon--arrow-up--120--orange {
+.copyicon--arrow-up--w120--orange {
     width: 120px;
     height: 173px;
     background-position: 0 0;
     fill: orange;
     }
-.copyicon--home--100 {
+.copyicon--home--w100 {
     width: 100px;
     height: 100px;
     background-position: -130px 0;
     }
-.copyicon--home--70--pink {
+.copyicon--home--w70--pink {
     width: 70px;
     height: 70px;
     background-position: -240px 0;
     fill: pink;
     }
-.copyicon--arrow-up--40 {
+.copyicon--arrow-up--w40 {
     width: 40px;
     height: 58px;
     background-position: -240px -80px;
@@ -37,7 +37,7 @@
     height: 43px;
     background-position: -170px -110px;
     }
-.copyicon--home--20--yellow {
+.copyicon--home--w20--yellow {
     width: 20px;
     height: 20px;
     background-position: -290px -80px;

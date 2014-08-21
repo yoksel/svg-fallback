@@ -291,8 +291,15 @@ module.exports = function(grunt) {
             var srcPath = svgResizedFolder + folder + "/" + file + ".svg";
             var newName = file;
 
+            var prefixes = {
+                "width": "w",
+                "height": "h"
+            };
+
             for (var key in props) {
-                newName += "--" + props[key];
+                var prefix = prefixes[key] ? prefixes[key] : "";
+                newName += "--" + prefix;
+                newName += props[key];
             }
 
             var destPath = svgPreparedFolder + folder + "/" + newName + ".svg";
