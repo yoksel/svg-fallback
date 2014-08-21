@@ -4,58 +4,58 @@
 .ie8 .testicon {
     background-image: url(testicon.png);
     }
-.testicon--arrow-up {
+.testicon--arrow-up--green {
     width: 182px;
     height: 262px;
     background-position: 0 0;
+    fill: green;
+    }
+.testicon--arrow-up {
+    width: 182px;
+    height: 262px;
+    background-position: -192px 0;
     }
 .testicon--arrow-up--150--steelblue {
     width: 150px;
     height: 216px;
-    background-position: -192px 0;
+    background-position: -384px 0;
     fill: steelblue;
     }
 .testicon--home--170--teal {
     width: 170px;
     height: 170px;
-    background-position: -352px 0;
+    background-position: 0 -272px;
     fill: teal;
     }
 .testicon--home--150 {
     width: 150px;
     height: 150px;
-    background-position: 0 -272px;
-    }
-.testicon--home {
-    width: 78px;
-    height: 78px;
-    background-position: -352px -180px;
+    background-position: -180px -272px;
     }
 .testicon--arrow-up--50 {
     width: 50px;
     height: 72px;
-    background-position: -440px -180px;
+    background-position: -340px -272px;
     }
-.testicon--arrow-up--green {
-    width: 30px;
-    height: 43px;
-    background-position: -160px -272px;
-    fill: green;
+.testicon--home--hotpink {
+    width: 42px;
+    height: 42px;
+    background-position: -400px -272px;
+    fill: hotpink;
+    }
+.testicon--home {
+    width: 42px;
+    height: 42px;
+    background-position: -452px -272px;
     }
 .testicon--home--20--yellowgreen {
     width: 20px;
     height: 20px;
-    background-position: -500px -180px;
+    background-position: -384px -226px;
     fill: yellowgreen;
-    }
-.testicon--home--hotpink {
-    width: 12px;
-    height: 12px;
-    background-position: -500px -210px;
-    fill: hotpink;
     }
 .testicon--remove {
     width: 12px;
     height: 12px;
-    background-position: -500px -232px;
+    background-position: -414px -226px;
     }

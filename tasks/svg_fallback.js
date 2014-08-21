@@ -57,7 +57,6 @@ module.exports = function(grunt) {
         // Get configs
         //---------------------------------------
 
-
         var configFiles = grunt.file.expand(configPath);
 
         configFiles.forEach(function(filePath) {
@@ -76,9 +75,7 @@ module.exports = function(grunt) {
 
         // 0. Resize Svg-icons if config withs default sizes is exist
         //------------------------------------------
-        // console.log(config);
         sources = resizeSvg(sources);
-        // resizeSvg(sources);
 
         // 1. Create  SVG library
         //------------------------------------------
@@ -227,7 +224,6 @@ module.exports = function(grunt) {
                     else {
                         // folder has defaults, file no SIZE
                          grunt.file.copy(filePath, destPath + "/" + path.basename(filePath));
-                         console.log();
                     }
                 }
                 else {
@@ -292,7 +288,7 @@ module.exports = function(grunt) {
             var file = params["file"];
             var props = params["props"];
 
-            var srcPath = src + folder + "/" + file + ".svg";
+            var srcPath = svgResizedFolder + folder + "/" + file + ".svg";
             var newName = file;
 
             for (var key in props) {
