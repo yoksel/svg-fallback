@@ -215,13 +215,23 @@ module.exports = function(grunt) {
 
                 var destPath = svgResizedFolder + folder + "/";
                 var fileName = path.basename(filePath, ".svg");
-                var fileDefaults = config[folder]["default-sizes"][fileName];
+                var folderDefaults = config[folder]["default-sizes"];
 
-                if ( fileDefaults != undefined ){
-                    fileDefaults["addColor"] = false;
-                    changeSVG(grunt.file.read(filePath), filePath, destPath, fileDefaults);
+                if ( folderDefaults != undefined ){
+                    var fileDefaults = folderDefaults[fileName];
+                    if ( fileDefaults != undefined ){
+                        // folder has defaults, file has SIZE
+                        fileDefaults["addColor"] = false;
+                        changeSVG(grunt.file.read(filePath), filePath, destPath, fileDefaults);
+                    }
+                    else {
+                        // folder has defaults, file no SIZE
+                         grunt.file.copy(filePath, destPath + "/" + path.basename(filePath));
+                         console.log();
+                    }
                 }
                 else {
+                    // folder has no defaults
                     grunt.file.copy(filePath, destPath + "/" + path.basename(filePath));
                 }
             });

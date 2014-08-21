@@ -1,13 +1,5 @@
 {
     "color": "skyblue",
-    "default-sizes": {
-        "arrow-up": {
-            "width": "123"
-            },
-        "home": {
-            "height": "78"
-        }
-    },
     "icons": {
         "arrow-up": [{
             "width": "40"

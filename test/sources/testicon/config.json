@@ -2,10 +2,10 @@
     "color": "orangered",
     "default-sizes": {
         "arrow-up": {
-            "width": "80"
+            "width": "182"
             },
         "home": {
-            "height": "100"
+            "height": "78"
         }
     },
     "icons": {

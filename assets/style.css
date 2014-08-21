@@ -80,9 +80,11 @@ svg {
     position: relative;
     display: block;
     float: right;
-    margin-left: 3em;
     border: 1px solid #DDD;
     }
+    .demo-icon--svg {
+        margin-right: 3em;
+        }
     .demo-icon:before {
         display: block;
         position: absolute;
