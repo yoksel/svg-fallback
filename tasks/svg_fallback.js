@@ -38,6 +38,7 @@ module.exports = function(grunt) {
             config = {},
             tempFolder = "temp/",
             tempFolderAbs = process.cwd() + "/" + tempFolder,
+            svgResizedFolder = tempFolder + "svgResized/",
             svgPreparedFolder = tempFolder + "svgPrepared/",
             svgProcessedFolder = tempFolder + "svgProcessed/",
             pngFolder = tempFolder + "png/",
@@ -72,6 +73,12 @@ module.exports = function(grunt) {
         var newConfig = {};
 
         var sources = grunt.file.expand(srcFilesPath);
+
+        // 0. Resize Svg-icons if config withs default sizes is exist
+        //------------------------------------------
+        // console.log(config);
+        sources = resizeSvg(sources);
+        // resizeSvg(sources);
 
         // 1. Create  SVG library
         //------------------------------------------
@@ -200,6 +207,27 @@ module.exports = function(grunt) {
             out = symbolHead + symbolBody + symbolTail;
 
             return out;
+        }
+
+        function resizeSvg(sources){
+            sources.forEach(function(filePath) {
+                var folder = getFolder(filePath);
+
+                var destPath = svgResizedFolder + folder + "/";
+                var fileName = path.basename(filePath, ".svg");
+                var fileDefaults = config[folder]["default-sizes"][fileName];
+
+                if ( fileDefaults != undefined ){
+                    fileDefaults["addColor"] = false;
+                    changeSVG(grunt.file.read(filePath), filePath, destPath, fileDefaults);
+                }
+                else {
+                    grunt.file.copy(filePath, destPath + "/" + path.basename(filePath));
+                }
+            });
+
+            var newSources = grunt.file.expand(svgResizedFolder + "/**/*.svg");
+            return newSources;
         }
 
         /**
@@ -389,9 +417,10 @@ module.exports = function(grunt) {
          * @param {string} input - Input SVG
          * @param {string} from - Input path
          * @param {string} to - Output path
+         * @param {Object} config - params to replace in file
          * @returns {string} svg with new sizes and color
          */
-        function changeSVG(input, from, to) {
+        function changeSVG(input, from, to, config) {
             var out = "";
             var svgTail = "</svg>";
 
@@ -400,13 +429,20 @@ module.exports = function(grunt) {
             var fileName = path.basename(from, ".svg");
             var fileNameExt = path.basename(from);
 
-            var newData = newConfig[folder][fileName];
+            var newData = config ? config : newConfig[folder][fileName]
+            // var newData = newConfig[folder][fileName];
 
             input = clearInput(input);
 
             var svgHead = rebuildSvgHead(input, newData);
             var svgBody = getSVGBody(input);
-            svgBody = changeColor(svgBody, newData, folder);
+            var addColor = true;
+            if( newData != undefined && newData["addColor"] != undefined ){
+                addColor = newData["addColor"];
+            }
+            if ( addColor ){
+                svgBody = changeColor(svgBody, newData, folder);
+            }
 
             out = svgHead + svgBody + svgTail;
 
@@ -498,10 +534,10 @@ module.exports = function(grunt) {
                 grunt.log.errorlns('A folder failed to process\n\n');
             } else {
 
-                if( !debug ){
-                    rmdir(tempFolder, function() {
-                    });
-                }
+            if( !debug ){
+                rmdir(tempFolder, function() {
+                });
+            }
 
                 createControlPage();
             }
@@ -582,7 +618,6 @@ module.exports = function(grunt) {
         function writeCss(folder, coordinates) {
 
             var outputCss = "";
-            var cssTemplate = grunt.file.read(templatesFolder + "/template.css");
             var filePath = folder + "/" + folder + ".css";
             var destCssFile = dest + filePath;
             var prefixIe8Template = grunt.file.read(templatesFolder + "/prefix--ie8.css");

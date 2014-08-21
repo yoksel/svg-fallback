@@ -1,5 +1,13 @@
 {
     "color": "orangered",
+    "default-sizes": {
+        "arrow-up": {
+            "width": "80"
+            },
+        "home": {
+            "height": "100"
+        }
+    },
     "icons": {
         "arrow-up": [{
             "width": "50"
@@ -21,4 +29,5 @@
             "color": "hotpink"
         }]
     }
+
 }
