@@ -523,8 +523,8 @@ module.exports = function(grunt) {
             var spritesmithParams = {
                 'src': pngFiles,
                 'engine': options.engine || 'auto',
-                'algorithm': options.algorithm || 'top-down',
-                'padding': options.padding || 0,
+                'algorithm': options.algorithm || 'binary-tree',
+                'padding': options.padding || 10,
                 'algorithmOpts': options.algorithmOpts || {},
                 'engineOpts': options.engineOpts || {},
                 'exportOpts': imgOpts || {}

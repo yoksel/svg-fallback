@@ -15,19 +15,10 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     svg_fallback: {
-        options: {
-            algorithm: 'binary-tree',
-            padding: 10
-        },
         your_target: {
             src: 'test/sources/',
             dest: 'test/result/'
         }
-    },
-
-    // Unit tests.
-    nodeunit: {
-      tests: ['test/*_test.js']
     }
 
   });
