@@ -2,7 +2,7 @@
 
 Generates SVG library and PNG+CSS fallback.
 
->
+> Save your time and enjoy SVG : )
 
 Plugin takes folders with SVG and generates:
 
@@ -119,6 +119,8 @@ and folder **temp** will not be removed.
 
 ### Color and resize your icons
 
+It works for transparent svg only.
+
 You can add **config.json** to folder with icons and define preffered changes of initial svg-files.
 
 Example of config:
@@ -215,7 +217,7 @@ Usage of svg:
 ```html
 <span class="myicons myicons--mail">
   <svg>
-    <use xlink:href="#myicons-mail"></use>
+    <use xlink:href="#myicons--mail"></use>
   </svg>
 </span>
 ```
