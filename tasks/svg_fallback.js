@@ -206,30 +206,41 @@ module.exports = function(grunt) {
             return out;
         }
 
-        function resizeSvg(sources){
+        function resizeSvg(sources) {
             sources.forEach(function(filePath) {
                 var folder = getFolder(filePath);
 
                 var destPath = svgResizedFolder + folder + "/";
                 var fileName = path.basename(filePath, ".svg");
-                var folderDefaults = config[folder]["default-sizes"];
+                var folderOptions = config[folder];
+                var hasDefaults = false;
 
-                if ( folderDefaults != undefined ){
-                    var fileDefaults = folderDefaults[fileName];
-                    if ( fileDefaults != undefined ){
-                        // folder has defaults, file has SIZE
-                        fileDefaults["addColor"] = false;
-                        changeSVG(grunt.file.read(filePath), filePath, destPath, fileDefaults);
-                    }
-                    else {
-                        // folder has defaults, file no SIZE
-                         grunt.file.copy(filePath, destPath + "/" + path.basename(filePath));
-                    }
+                if (folderOptions && folderOptions["default-sizes"] && folderOptions["default-sizes"][fileName]) {
+                    var fileDefaults = folderOptions["default-sizes"][fileName];
+                    fileDefaults["addColor"] = false;
+                    hasDefaults = true;
                 }
-                else {
-                    // folder has no defaults
+
+                if (hasDefaults) {
+                    changeSVG(grunt.file.read(filePath), filePath, destPath, fileDefaults);
+                } else {
                     grunt.file.copy(filePath, destPath + "/" + path.basename(filePath));
                 }
+
+                // if (folderDefaults != undefined) {
+                //     var fileDefaults = folderDefaults[fileName];
+                //     if (fileDefaults != undefined) {
+                //         // folder has defaults, file has SIZE
+                //         fileDefaults["addColor"] = false;
+                //         changeSVG(grunt.file.read(filePath), filePath, destPath, fileDefaults);
+                //     } else {
+                //         // folder has defaults, file no SIZE
+                //         grunt.file.copy(filePath, destPath + "/" + path.basename(filePath));
+                //     }
+                // } else {
+                //     // folder has no defaults
+                //     grunt.file.copy(filePath, destPath + "/" + path.basename(filePath));
+                // }
             });
 
             var newSources = grunt.file.expand(svgResizedFolder + "/**/*.svg");
@@ -412,7 +423,10 @@ module.exports = function(grunt) {
          */
         function changeColor(input, newData, folder) {
             var out = input;
-            var shapeColor = config[folder].color;
+            var shapeColor = "";
+            if (config[folder] && config[folder]["color"]) {
+                shapeColor = config[folder]["color"];
+            }
 
             if (newData && newData.color) {
                 shapeColor = newData.color;
@@ -442,18 +456,20 @@ module.exports = function(grunt) {
             var fileName = path.basename(from, ".svg");
             var fileNameExt = path.basename(from);
 
-            var newData = config ? config : newConfig[folder][fileName]
-            // var newData = newConfig[folder][fileName];
+            var newData = config ? config : [];
+            if (newConfig[folder] && newConfig[folder][fileName]) {
+                newData = newConfig[folder][fileName];
+            }
 
             input = clearInput(input);
 
             var svgHead = rebuildSvgHead(input, newData);
             var svgBody = getSVGBody(input);
             var addColor = true;
-            if( newData != undefined && newData["addColor"] != undefined ){
+            if (newData != undefined && newData["addColor"] != undefined) {
                 addColor = newData["addColor"];
             }
-            if ( addColor ){
+            if (addColor) {
                 svgBody = changeColor(svgBody, newData, folder);
             }
 
@@ -547,10 +563,9 @@ module.exports = function(grunt) {
                 grunt.log.errorlns('A folder failed to process\n\n');
             } else {
 
-            if( !debug ){
-                rmdir(tempFolder, function() {
-                });
-            }
+                if (!debug) {
+                    rmdir(tempFolder, function() {});
+                }
 
                 createControlPage();
             }
@@ -598,7 +613,7 @@ module.exports = function(grunt) {
         function sortByName(a, b) {
             a = convertToVal(a.name);
             b = convertToVal(b.name);
-            return simpleSort(a,b);
+            return simpleSort(a, b);
         }
 
         function sortIconsToGroup(icons) {
@@ -641,8 +656,11 @@ module.exports = function(grunt) {
             var iconsData = {};
             iconsData.spriteurl = path.basename(dest + folder + "/" + folder + ".png");
             iconsData.prefix = folder;
-            iconsData.color = config[folder].color;
             iconsData.icons = [];
+            iconsData.color = "";
+            if (config[folder] && config[folder]["color"]) {
+                iconsData.color = config[folder]["color"];
+            }
 
             if (iconsData.color) {
                 outputCss += mustache.render(prefixFillTemplate, iconsData);
@@ -655,8 +673,11 @@ module.exports = function(grunt) {
                 var iconTemplate = iconFillTemplate;
 
                 var fileName = path.basename(key, ".png");
-                var iconConfig = newConfig[folder][fileName];
-                var iconColor = iconConfig ? iconConfig.color : "";
+                var iconConfig = {};
+                if (newConfig[folder] && newConfig[folder][fileName]) {
+                    iconConfig = newConfig[folder][fileName];
+                }
+                var iconColor = iconConfig.color ? iconConfig.color : "";
 
                 var iconData = {
                     prefix: iconsData.prefix,
@@ -668,9 +689,9 @@ module.exports = function(grunt) {
                     color: iconColor
                 };
 
-                if( !iconData.color ) {
+                if (!iconData.color) {
                     iconTemplate = iconNoFillTemplate;
-                    }
+                }
 
                 outputCss += mustache.render(iconTemplate, iconData);
 

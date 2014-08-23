@@ -1,50 +1,48 @@
 {
-  "name": "svg_fallback",
-  "description": "",
-  "version": "0.1.23",
-  "homepage": "",
-  "author": {
-    "name": "yoksel",
-    "email": "yokayoka@yandex.ru"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yoksel/svg-fallback"
-  },
-  "bugs": {
-    "url": ""
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "/blob/master/LICENSE-MIT"
-    }
-  ],
-  "engines": {
-    "node": ">= 0.8.0"
-  },
-  "scripts": {
-    "test": "grunt test"
-  },
-  "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-contrib-clean": "^0.5.0",
-    "grunt-contrib-copy": "^0.5.0",
-    "grunt-contrib-jshint": "^0.9.2",
-    "grunt-contrib-nodeunit": "^0.3.3"
-  },
-  "dependencies": {
-    "async": "^0.9.0",
-    "mustache": "^0.8.2",
-    "open": "0.0.5",
-    "rimraf": "~2.2.8",
-    "spritesmith": "^0.19.2",
-    "svg-to-png": "^0.6.0"
-  },
-  "peerDependencies": {
-    "grunt": "~0.4.5"
-  },
-  "keywords": [
-    "gruntplugin", "svg"
-  ]
+    "name": "svg_fallback",
+    "description": "",
+    "version": "0.1.24",
+    "homepage": "",
+    "author": {
+        "name": "yoksel",
+        "email": "yokayoka@yandex.ru"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yoksel/svg-fallback"
+    },
+    "bugs": {
+        "url": ""
+    },
+    "licenses": [{
+        "type": "MIT",
+        "url": "/blob/master/LICENSE-MIT"
+    }],
+    "engines": {
+        "node": ">= 0.8.0"
+    },
+    "scripts": {
+        "test": "grunt test"
+    },
+    "devDependencies": {
+        "grunt": "~0.4.5",
+        "grunt-contrib-clean": "^0.5.0",
+        "grunt-contrib-copy": "^0.5.0",
+        "grunt-contrib-jshint": "^0.9.2",
+        "grunt-contrib-nodeunit": "^0.3.3"
+    },
+    "dependencies": {
+        "async": "^0.9.0",
+        "mustache": "^0.8.2",
+        "open": "0.0.5",
+        "rimraf": "~2.2.8",
+        "spritesmith": "^0.19.2",
+        "svg-to-png": "^0.6.0"
+    },
+    "peerDependencies": {
+        "grunt": "~0.4.5"
+    },
+    "keywords": [
+        "gruntplugin", "svg"
+    ]
 }

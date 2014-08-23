@@ -1,0 +1,13 @@
+.ie8 .noconfig {
+    background-image: url(noconfig.png);
+    }
+.noconfig--arrow-up {
+    width: 30px;
+    height: 43px;
+    background-position: 0 0;
+    }
+.noconfig--home {
+    width: 12px;
+    height: 12px;
+    background-position: -40px 0;
+    }
