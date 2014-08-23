@@ -10,27 +10,25 @@
 
 module.exports = function(grunt) {
 
-  // Project configuration.
-  grunt.initConfig({
+    // Project configuration.
+    grunt.initConfig({
 
-    // Configuration to be run (and then tested).
-    svg_fallback: {
-        your_target: {
-            src: 'test/sources/',
-            dest: 'test/result/'
+        // Configuration to be run (and then tested).
+        svg_fallback: {
+            options: {
+                debug: true
+            },
+            your_target: {
+                src: 'test/sources/',
+                dest: 'test/result/'
+            }
         }
-    }
 
-  });
+    });
 
-  // Actually load this plugin's task(s).
-  grunt.loadTasks('tasks');
+    // Actually load this plugin's task(s).
+    grunt.loadTasks('tasks');
 
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
-
-  grunt.registerTask('default', ['svg_fallback']);
+    grunt.registerTask('default', ['svg_fallback']);
 
 };
