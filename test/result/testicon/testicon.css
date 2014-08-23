@@ -8,7 +8,6 @@
     width: 182px;
     height: 262px;
     background-position: 0 0;
-    fill: green;
     }
 .testicon--arrow-up {
     width: 182px;
@@ -19,13 +18,11 @@
     width: 150px;
     height: 216px;
     background-position: -384px 0;
-    fill: steelblue;
     }
 .testicon--home--w170--teal {
     width: 170px;
     height: 170px;
     background-position: 0 -272px;
-    fill: teal;
     }
 .testicon--home--w150 {
     width: 150px;
@@ -41,13 +38,11 @@
     width: 62px;
     height: 62px;
     background-position: -400px -272px;
-    fill: yellowgreen;
     }
 .testicon--home--hotpink {
     width: 42px;
     height: 42px;
     background-position: -472px -272px;
-    fill: hotpink;
     }
 .testicon--home {
     width: 42px;
