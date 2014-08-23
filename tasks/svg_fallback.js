@@ -16,28 +16,24 @@ var path = require('path'),
     rmdir = require('rimraf'),
     util = require("util"),
     async = require("async"),
-    open = require("open");
+    open = require("open"),
+    svgmodify = require("svg-modify");
 
 module.exports = function(grunt) {
 
-    grunt.registerMultiTask('svg_fallback', 'Create PNG from SVG.', function() {
+    grunt.registerMultiTask('svg_fallback', 'Generates SVG library and PNG+CSS fallback.', function() {
 
         var currentFolder = __dirname,
             templatesFolder = path.resolve(currentFolder, "../templates"),
             assetsFolder = path.resolve(currentFolder, "../assets"),
             src = this.data.src,
             dest = this.data.dest,
-            srcFilesPath = src + "**/*.svg",
             configPath = src + "**/*.json",
-            destFolderAbs = process.cwd() + "/" + dest,
             destIndex = dest + "index.html",
-            destAssets = dest + "assets/",
             options = this.options(),
-            color = options.color,
             debug = options.debug,
             config = {},
             tempFolder = "temp/",
-            tempFolderAbs = process.cwd() + "/" + tempFolder,
             svgResizedFolder = tempFolder + "svgResized/",
             svgPreparedFolder = tempFolder + "svgPrepared/",
             svgProcessedFolder = tempFolder + "svgProcessed/",
@@ -64,43 +60,36 @@ module.exports = function(grunt) {
             config[folder] = grunt.file.readJSON(filePath);
         });
 
-        // Copy files to temp folder,
-        // + create files with additional sizes,
-        // + create new config for later resizing
-        //---------------------------------------
-
-        var newConfig = {};
-
-        var sources = grunt.file.expand(srcFilesPath);
-
-        // 0. Resize Svg-icons if config withs default sizes is exist
+        // 0. Resize Svg-icons if config with default sizes is exist
         //------------------------------------------
-        sources = resizeSvg(sources);
+
+        var resizeParams = {
+            "inputFolder": src,
+            "destFolder": svgResizedFolder,
+            "config": config,
+            "configKey": "default-sizes"
+        };
+
+        processFolder(resizeParams);
 
         // 1. Create  SVG library
         //------------------------------------------
+        var sources = grunt.file.expand(svgResizedFolder + "**/*.svg");
         createSvgLib(sources);
 
-        // 2. Copy files
-        //------------------------------------------
-        sources.forEach(function(filePath) {
-            var folder = getFolder(filePath);
-
-            var destPath = svgPreparedFolder + folder + "/" + path.basename(filePath);
-
-            grunt.file.copy(filePath, destPath);
-        });
-
-        // 3. Create files with requested sizes in names
-        //------------------------------------------
-        createFilesWithSizesInNames();
-
-        // 4. Change sizes and colors in SVG-files
+        // 2. Change sizes and colors in SVG-files (prepare to PNG)
         //------------------------------------------
 
-        changePreparedSvg();
+        var variationsParams = {
+            "inputFolder": svgResizedFolder,
+            "destFolder": svgProcessedFolder,
+            "config": config,
+            "configKey": "icons" // variations
+        };
 
-        // 5. Convert SVG to PNG
+        processFolder(variationsParams);
+
+        // 3. Convert SVG to PNG
         //------------------------------------------
 
         var checkSvgs = grunt.file.isDir(svgProcessedFolder);
@@ -112,16 +101,20 @@ module.exports = function(grunt) {
 
         createPngByFoldersAsync();
 
-        // 6. Create sprite from png, write CSS
+        // 4. Create sprite from png, write CSS
         //------------------------------------------
 
-        // 7. Create create control page
+        // 5. Create create control page
         //------------------------------------------
 
 
         // FUNCTIONS
         //---------------------------------------
 
+        /**
+         * @param {string} filePath
+         * @returns {string} name of folder containing file
+         */
         function getFolder(filePath) {
             var pathArray = filePath.split(path.sep);
             return pathArray[pathArray.length - 2];
@@ -129,14 +122,68 @@ module.exports = function(grunt) {
 
         /**
          * @param {string} input - code of SVG-file
-         * @returns {string} clear svg-code without \n, \r and \t
+         * @returns {string} clear svg-code
          */
         function clearInput(input) {
             var output = input.replace(new RegExp("[\r\n\t]", "g"), "");
-            // remove xml tad and doctype
+            // remove xml tag and doctype
             output = output.replace(new RegExp("(<)(.*?)(xml |dtd)(.*?)(>)", 'g'), "");
             output = output.replace(new RegExp("(<g></g>)", 'g'), "");
             return output;
+        }
+
+        /**
+         * @param {string} inputFolder
+         * @param {string} destFolder
+         */
+        function copyFiles(inputFolder, destFolder) {
+
+            var sources = grunt.file.expand(inputFolder + "**/*.svg");
+
+            sources.forEach(function(filePath) {
+                var folder = getFolder(filePath);
+
+                var destPath = destFolder + "/" + path.basename(filePath);
+
+                grunt.file.copy(filePath, destPath);
+            });
+        }
+
+        /**
+         * Modify and place files to destFolder.
+         * If there is no config - just copy files to destFolder.
+         * @param {Object} params
+         * @param {string} params.inputFolder
+         * @param {string} params.destFolder
+         * @param {string} params.configKey - key for particular part of config
+         */
+        function processFolder(params) {
+
+            var inputFolder = params.inputFolder,
+                destFolder = params.destFolder,
+                configKey = params.configKey;
+
+            var folders = grunt.file.expand(inputFolder + "*");
+
+            folders.forEach(function(inputFolder) {
+                var folderName = path.basename(inputFolder);
+
+                if (config[folderName] && config[folderName][configKey]) {
+
+                    var folderOptions = config[folderName][configKey];
+                    var changesParams = {
+                        "inputFolder": inputFolder,
+                        "outputFolder": destFolder,
+                        "folderOptions": folderOptions
+                    };
+                    if (configKey != "default-sizes" && config[folderName]["color"]) {
+                        changesParams["defaultColor"] = config[folderName]["color"];
+                    }
+                    svgmodify.makeChanges(changesParams);
+                } else {
+                    copyFiles(inputFolder, destFolder + folderName);
+                }
+            });
         }
 
         /**
@@ -206,51 +253,9 @@ module.exports = function(grunt) {
             return out;
         }
 
-        function resizeSvg(sources) {
-            sources.forEach(function(filePath) {
-                var folder = getFolder(filePath);
-
-                var destPath = svgResizedFolder + folder + "/";
-                var fileName = path.basename(filePath, ".svg");
-                var folderOptions = config[folder];
-                var hasDefaults = false;
-
-                if (folderOptions && folderOptions["default-sizes"] && folderOptions["default-sizes"][fileName]) {
-                    var fileDefaults = folderOptions["default-sizes"][fileName];
-                    fileDefaults["addColor"] = false;
-                    hasDefaults = true;
-                }
-
-                if (hasDefaults) {
-                    changeSVG(grunt.file.read(filePath), filePath, destPath, fileDefaults);
-                } else {
-                    grunt.file.copy(filePath, destPath + "/" + path.basename(filePath));
-                }
-
-                // if (folderDefaults != undefined) {
-                //     var fileDefaults = folderDefaults[fileName];
-                //     if (fileDefaults != undefined) {
-                //         // folder has defaults, file has SIZE
-                //         fileDefaults["addColor"] = false;
-                //         changeSVG(grunt.file.read(filePath), filePath, destPath, fileDefaults);
-                //     } else {
-                //         // folder has defaults, file no SIZE
-                //         grunt.file.copy(filePath, destPath + "/" + path.basename(filePath));
-                //     }
-                // } else {
-                //     // folder has no defaults
-                //     grunt.file.copy(filePath, destPath + "/" + path.basename(filePath));
-                // }
-            });
-
-            var newSources = grunt.file.expand(svgResizedFolder + "/**/*.svg");
-            return newSources;
-        }
-
         /**
          * Create SVG-symbols and write it to one file
          * @param {Array} sources - list of files
-         * @returns {string}
          */
         function createSvgLib(sources) {
             var svgSymbols = {};
@@ -288,203 +293,10 @@ module.exports = function(grunt) {
             grunt.log.writeln("\n");
         }
 
-        /**
-         * 1. Create file with params in name and place it to svgPreparedFolder
-         * 2. Create new config during this process
-         * @param {string} params - folder,file and properties
-         */
-        function copyFileWithParam(params) {
-
-            var folder = params["folder"];
-            var file = params["file"];
-            var props = params["props"];
-
-            var srcPath = svgResizedFolder + folder + "/" + file + ".svg";
-            var newName = file;
-
-            var prefixes = {
-                "width": "w",
-                "height": "h"
-            };
-
-            for (var key in props) {
-                var prefix = prefixes[key] ? prefixes[key] : "";
-                newName += "--" + prefix;
-                newName += props[key];
-            }
-
-            var destPath = svgPreparedFolder + folder + "/" + newName + ".svg";
-
-            grunt.file.copy(srcPath, destPath);
-            if (!newConfig[folder]) {
-                newConfig[folder] = {};
-            }
-            newConfig[folder][newName] = props;
-        }
-
-        /**
-         * Take SVG and config and create files with needed props in its names
-         */
-        function createFilesWithSizesInNames() {
-
-            for (var folder in config) {
-                var folderOptions = config[folder]["icons"];
-
-                for (var file in folderOptions) {
-
-                    var fileOptions = folderOptions[file];
-
-                    fileOptions.forEach(function(props) {
-                        var newFileParams = {
-                            "folder": folder,
-                            "file": file,
-                            "props": props
-                        };
-
-                        copyFileWithParam(newFileParams);
-                    });
-                }
-            }
-
-        }
-
-        function changePreparedSvg() {
-
-            var preparedSVG = grunt.file.expand(svgPreparedFolder + "/**/*.svg");
-
-            preparedSVG.forEach(function(filePath) {
-                var folder = getFolder(filePath);
-
-                var newPath = svgProcessedFolder + folder + "/";
-                changeSVG(grunt.file.read(filePath), filePath, newPath);
-            });
-
-        }
-
-        /**
-         * @param {Object} attrsObj - old attributes of SVG-element
-         * @param {Object} data - new attributes of SVG-element
-         * @returns {Object} remapped attributes
-         */
-        function changeAttrs(attrsObj, data) {
-
-            for (var key in data) {
-                var oldWidth, newWidth, oldHeight, newHeight;
-
-                if (key === "width") {
-                    oldWidth = parseFloat(attrsObj["width"]);
-                    newWidth = parseFloat(data["width"]);
-                    oldHeight = parseFloat(attrsObj["height"]);
-                    newHeight = newWidth / oldWidth * oldHeight;
-
-                    attrsObj["height"] = newHeight + "px";
-                    attrsObj[key] = data[key] + "px";
-                } else if (key === "height") {
-                    oldHeight = parseFloat(attrsObj["height"]);
-                    newHeight = parseFloat(data["height"]);
-
-                    oldWidth = parseFloat(attrsObj["width"]);
-                    newWidth = newHeight / oldHeight * oldWidth;
-
-                    attrsObj["width"] = newWidth + "px";
-                    attrsObj[key] = data[key] + "px";
-                }
-            }
-            return attrsObj;
-        }
-
-        /**
-         * @param {string} input - Input SVG
-         * @param {string} fileName for getting data from config
-         * @returns {string} new tag "svg"
-         */
-        function rebuildSvgHead(input, newData) {
-            var out = "";
-            var svgKeys = ["version", "xmlns", "width", "height", "viewBox"];
-
-            var attrsObj = getSVGAttrs(input);
-
-            if (newData) {
-                attrsObj = changeAttrs(attrsObj, newData);
-            }
-
-            for (var i = 0; i < svgKeys.length; i++) {
-                var key = svgKeys[i];
-                out += " " + key + "=\"" + attrsObj[key] + "\"";
-            }
-            out = "<svg" + out + ">";
-
-            return out;
-        }
-
-        /**
-         * @param {string} input - Input SVG
-         * @returns {string} colored svg
-         */
-        function changeColor(input, newData, folder) {
-            var out = input;
-            var shapeColor = "";
-            if (config[folder] && config[folder]["color"]) {
-                shapeColor = config[folder]["color"];
-            }
-
-            if (newData && newData.color) {
-                shapeColor = newData.color;
-            }
-
-            // colorize shapes if we have color
-            if (shapeColor) {
-                out = "<g fill=\"" + shapeColor + "\">" + out + "</g>";
-            }
-
-            return out;
-        }
-
-        /**
-         * @param {string} input - Input SVG
-         * @param {string} from - Input path
-         * @param {string} to - Output path
-         * @param {Object} config - params to replace in file
-         * @returns {string} svg with new sizes and color
-         */
-        function changeSVG(input, from, to, config) {
-            var out = "";
-            var svgTail = "</svg>";
-
-            var folder = getFolder(from);
-
-            var fileName = path.basename(from, ".svg");
-            var fileNameExt = path.basename(from);
-
-            var newData = config ? config : [];
-            if (newConfig[folder] && newConfig[folder][fileName]) {
-                newData = newConfig[folder][fileName];
-            }
-
-            input = clearInput(input);
-
-            var svgHead = rebuildSvgHead(input, newData);
-            var svgBody = getSVGBody(input);
-            var addColor = true;
-            if (newData != undefined && newData["addColor"] != undefined) {
-                addColor = newData["addColor"];
-            }
-            if (addColor) {
-                svgBody = changeColor(svgBody, newData, folder);
-            }
-
-            out = svgHead + svgBody + svgTail;
-
-            grunt.file.write(to + fileNameExt, out);
-        }
-
-
         function createPngByFoldersAsync() {
 
             var svgSrcFolders = fs.readdirSync(svgProcessedFolder);
-
             async.eachSeries(svgSrcFolders, convertToPng, convertToPngCallback);
-
         }
 
         function convertToPng(folder, callback) {
@@ -502,26 +314,8 @@ module.exports = function(grunt) {
             if (err) {
                 grunt.log.errorlns('A folder failed to process\n\n');
             } else {
-
                 createSpritesByFolders();
             }
-        }
-
-        /**
-         * @param {string} key - name of property
-         * @param {string} value
-         * @returns {string} value with needed units
-         */
-        function checkUnits(key, val) {
-            var units = "px";
-            if (val > 0) {
-                if (key === "width" || key === "height") {
-                    val += "px";
-                } else if (key === "x" || key === "y") {
-                    val = "-" + val + "px";
-                }
-            }
-            return val;
         }
 
         /**
@@ -566,7 +360,6 @@ module.exports = function(grunt) {
                 if (!debug) {
                     rmdir(tempFolder, function() {});
                 }
-
                 createControlPage();
             }
         }
@@ -640,6 +433,23 @@ module.exports = function(grunt) {
         }
 
         /**
+         * @param {string} key - name of property
+         * @param {string} value
+         * @returns {string} value with needed units
+         */
+        function checkUnits(key, val) {
+            var units = "px";
+            if (val > 0) {
+                if (key === "width" || key === "height") {
+                    val += "px";
+                } else if (key === "x" || key === "y") {
+                    val = "-" + val + "px";
+                }
+            }
+            return val;
+        }
+
+        /**
          * Write CSS for sprite to file
          * @param {Object} coordinates of created sprite
          */
@@ -674,9 +484,6 @@ module.exports = function(grunt) {
 
                 var fileName = path.basename(key, ".png");
                 var iconConfig = {};
-                if (newConfig[folder] && newConfig[folder][fileName]) {
-                    iconConfig = newConfig[folder][fileName];
-                }
                 var iconColor = iconConfig.color ? iconConfig.color : "";
 
                 var iconData = {
