@@ -230,6 +230,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.1.26 - Move changing SVG functions to module [svg-modify](https://www.npmjs.org/package/svg-modify)
+
 0.1.24 - Fix behavior for folders without config
 
 0.1.20 - Add prefix for sizes to names of files
