@@ -167,20 +167,46 @@ module.exports = function(grunt) {
 
             folders.forEach(function(inputFolder) {
                 var folderName = path.basename(inputFolder);
+                var folderOptionsFile = config[folderName];
+                var folderOptions = {};
 
-                if (config[folderName] && config[folderName][configKey]) {
 
-                    var folderOptions = config[folderName][configKey];
-                    var changesParams = {
+                // No options at all
+                if (!folderOptionsFile) {
+                    copyFiles(inputFolder, destFolder + folderName);
+                    return;
+                }
+
+                var defaults = folderOptionsFile["default-sizes"];
+                var variations = folderOptionsFile["icons"];
+                var color = folderOptionsFile["color"];
+
+                var changesParams = {
+                    "inputFolder": inputFolder,
+                    "outputFolder": destFolder
+                };
+
+                // Has color and has no any configs
+                if( color && (!defaults && !variations)){
+                    changesParams["defaultColor"] = color;
+                    svgmodify.makeChanges(changesParams);
+                    return;
+                }
+
+                if (folderOptionsFile[configKey]) {
+
+                    folderOptions = folderOptionsFile[configKey];
+                    changesParams = {
                         "inputFolder": inputFolder,
                         "outputFolder": destFolder,
                         "folderOptions": folderOptions
                     };
-                    if (configKey != "default-sizes" && config[folderName]["color"]) {
-                        changesParams["defaultColor"] = config[folderName]["color"];
+                    if (configKey != "default-sizes" && color) {
+                        changesParams["defaultColor"] = color;
                     }
                     svgmodify.makeChanges(changesParams);
-                } else {
+                }
+                else {
                     copyFiles(inputFolder, destFolder + folderName);
                 }
             });

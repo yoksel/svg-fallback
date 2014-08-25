@@ -19,7 +19,7 @@ module.exports = function(grunt) {
         // Configuration to be run (and then tested).
         svg_fallback: {
             options: {
-                debug: true
+                // debug: true
             },
             your_target: {
                 src: 'test/sources/',
@@ -32,6 +32,6 @@ module.exports = function(grunt) {
     grunt.loadTasks('tasks');
     grunt.loadNpmTasks('grunt-contrib-clean');
 
-    grunt.registerTask('default', ['clean', 'svg_fallback']);
+    grunt.registerTask('default', ['svg_fallback']);
 
 };
