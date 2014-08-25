@@ -1,55 +1,55 @@
-.testicon {
+.fullconfig {
     fill: orangered;
     }
-.ie8 .testicon {
-    background-image: url(testicon.png);
+.ie8 .fullconfig {
+    background-image: url(fullconfig.png);
     }
-.testicon--arrow-up--green {
+.fullconfig--arrow-up--green {
     width: 182px;
     height: 262px;
     background-position: 0 0;
     }
-.testicon--arrow-up {
+.fullconfig--arrow-up {
     width: 182px;
     height: 262px;
     background-position: -192px 0;
     }
-.testicon--arrow-up--w150--steelblue {
+.fullconfig--arrow-up--w150--steelblue {
     width: 150px;
     height: 216px;
     background-position: -384px 0;
     }
-.testicon--home--w170--teal {
+.fullconfig--home--w170--teal {
     width: 170px;
     height: 170px;
     background-position: 0 -272px;
     }
-.testicon--home--w150 {
+.fullconfig--home--w150 {
     width: 150px;
     height: 150px;
     background-position: -180px -272px;
     }
-.testicon--arrow-up--w50 {
+.fullconfig--arrow-up--w50 {
     width: 50px;
     height: 72px;
     background-position: -340px -272px;
     }
-.testicon--home--h62--yellowgreen {
+.fullconfig--home--h62--yellowgreen {
     width: 62px;
     height: 62px;
     background-position: -400px -272px;
     }
-.testicon--home--hotpink {
+.fullconfig--home--hotpink {
     width: 42px;
     height: 42px;
     background-position: -472px -272px;
     }
-.testicon--home {
+.fullconfig--home {
     width: 42px;
     height: 42px;
     background-position: -340px -354px;
     }
-.testicon--remove {
+.fullconfig--remove {
     width: 12px;
     height: 12px;
     background-position: -384px -226px;
