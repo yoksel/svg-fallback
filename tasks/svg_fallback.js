@@ -268,7 +268,7 @@ module.exports = function(grunt) {
             var symbolTail = "</symbol>";
 
             var folder = getFolder(from);
-            var fileName = folder + "-" + path.basename(from, ".svg");
+            var fileName = folder + "--" + path.basename(from, ".svg");
 
             input = clearInput(input);
             var symbolHead = getSymbolHead(input, fileName);

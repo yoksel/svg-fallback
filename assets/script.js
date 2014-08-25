@@ -42,7 +42,7 @@ function createIconsList(folder,items) {
         var iconId = item.name;
         var width = item.width.replace("px","");
         var height = item.height.replace("px","");
-        var fullIconId = folder + "-" +iconId;
+        var fullIconId = folder + "--" +iconId;
         var spanClass = folder + " "+ folder +"--" + iconId;
         spanClass += " demo-icon";
 
