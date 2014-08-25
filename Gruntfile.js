@@ -13,6 +13,9 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
 
+        clean: {
+          temp: ["temp"]
+        },
         // Configuration to be run (and then tested).
         svg_fallback: {
             options: {
@@ -26,9 +29,9 @@ module.exports = function(grunt) {
 
     });
 
-    // Actually load this plugin's task(s).
     grunt.loadTasks('tasks');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
-    grunt.registerTask('default', ['svg_fallback']);
+    grunt.registerTask('default', ['clean', 'svg_fallback']);
 
 };
