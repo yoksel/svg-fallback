@@ -217,11 +217,9 @@ myicons.css:
 Add SVG-library to the page and add particular icons this way:
 
 ```html
-<span class="myicons myicons--mail">
-  <svg>
-    <use xlink:href="#myicons--mail"></use>
-  </svg>
-</span>
+<svg xmlns="http://www.w3.org/2000/svg" class="myicons myicons--mail">
+    <use xlink:href="#myicons--mail"/>
+</svg>
 ```
 
 

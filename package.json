@@ -1,7 +1,7 @@
 {
   "name": "svg_fallback",
   "description": "Generates SVG library and PNG+CSS fallback.",
-  "version": "0.1.30",
+  "version": "0.1.31",
   "homepage": "https://github.com/yoksel/svg-fallback",
   "author": {
     "name": "yoksel",
@@ -37,7 +37,7 @@
     "rimraf": "~2.2.8",
     "spritesmith": "^0.19.2",
     "svg-to-png": "^0.6.0",
-    "svg-modify": "~0.0.2"
+    "svg-modify": "~0.0.4"
   },
   "peerDependencies": {
     "grunt": "~0.4.5"
