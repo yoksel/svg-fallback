@@ -14,7 +14,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
 
         clean: {
-          temp: ["temp"]
+            temp: ["temp"]
         },
         // Configuration to be run (and then tested).
         svg_fallback: {

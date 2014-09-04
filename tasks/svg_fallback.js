@@ -67,7 +67,8 @@ module.exports = function(grunt) {
             "inputFolder": src,
             "destFolder": svgResizedFolder,
             "config": config,
-            "configKey": "default-sizes"
+            "configKey": "default-sizes",
+            "colorize": false
         };
 
         processFolder(resizeParams);
@@ -161,7 +162,8 @@ module.exports = function(grunt) {
 
             var inputFolder = params.inputFolder,
                 destFolder = params.destFolder,
-                configKey = params.configKey;
+                configKey = params.configKey,
+                colorize = params.colorize === false ? false : true;
 
             var folders = grunt.file.expand(inputFolder + "*");
 
@@ -169,7 +171,6 @@ module.exports = function(grunt) {
                 var folderName = path.basename(inputFolder);
                 var folderOptionsFile = config[folderName];
                 var folderOptions = {};
-
 
                 // No options at all
                 if (!folderOptionsFile) {
@@ -183,11 +184,12 @@ module.exports = function(grunt) {
 
                 var changesParams = {
                     "inputFolder": inputFolder,
-                    "outputFolder": destFolder
+                    "outputFolder": destFolder,
+                    "colorize": colorize
                 };
 
                 // Has color and has no any configs
-                if( color && (!defaults && !variations)){
+                if (color && (!defaults && !variations)) {
                     changesParams["defaultColor"] = color;
                     svgmodify.makeChanges(changesParams);
                     return;
@@ -195,18 +197,26 @@ module.exports = function(grunt) {
 
                 if (folderOptionsFile[configKey]) {
 
+                    var defaults = folderOptionsFile["default-sizes"];
+
                     folderOptions = folderOptionsFile[configKey];
                     changesParams = {
                         "inputFolder": inputFolder,
                         "outputFolder": destFolder,
-                        "folderOptions": folderOptions
+                        "folderOptions": folderOptions,
+                        "colorize": colorize
                     };
                     if (configKey != "default-sizes" && color) {
                         changesParams["defaultColor"] = color;
                     }
+
+                    if (configKey != "default-sizes" && defaults) {
+                        changesParams["defaults"] = defaults;
+                    }
+
                     svgmodify.makeChanges(changesParams);
-                }
-                else {
+
+                } else {
                     copyFiles(inputFolder, destFolder + folderName);
                 }
             });
@@ -510,7 +520,12 @@ module.exports = function(grunt) {
 
                 var fileName = path.basename(key, ".png");
                 var iconConfig = {};
-                var iconColor = iconConfig.color ? iconConfig.color : "";
+                var iconColor = "";
+
+                if (config && config[folder] && config[folder]["default-sizes"] && config[folder]["default-sizes"][fileName]) {
+                    iconColor = config[folder]["default-sizes"][fileName]["color"];
+                }
+
 
                 var iconData = {
                     prefix: iconsData.prefix,

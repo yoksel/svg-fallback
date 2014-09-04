@@ -2,8 +2,8 @@
     "color": "orangered",
     "default-sizes": {
         "arrow-up": {
-            "width": "182"
-            },
+            "color": "blue"
+        },
         "home": {
             "height": "42"
         }
@@ -12,7 +12,7 @@
         "arrow-up": [{
             "width": "50"
         }, {
-            "width": "150",
+            "width": "143",
             "color": "steelblue"
         }, {
             "color": "green"

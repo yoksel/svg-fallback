@@ -228,6 +228,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.1.32 - Fix colorizing when colors come from defaults
+
 0.1.30 - Change delimiter in names of SVG-symbols: was `-`, now `--` - for consistency with class names
 
 0.1.26 - Move changing SVG functions to module [svg-modify](https://www.npmjs.org/package/svg-modify)
