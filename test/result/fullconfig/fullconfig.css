@@ -8,18 +8,20 @@
     width: 143px;
     height: 206px;
     background-position: 0 0;
+    fill: steelblue;
     }
 .fullconfig--home--w170--teal {
     width: 170px;
     height: 170px;
     background-position: -153px 0;
+    fill: teal;
     }
-.fullconfig--home--w150 {
+.fullconfig--home--w150--gold {
     width: 150px;
     height: 150px;
     background-position: -333px 0;
     }
-.fullconfig--arrow-up--w50 {
+.fullconfig--arrow-up--w50--blue {
     width: 50px;
     height: 72px;
     background-position: 0 -216px;
@@ -28,11 +30,13 @@
     width: 62px;
     height: 62px;
     background-position: -60px -216px;
+    fill: yellowgreen;
     }
 .fullconfig--arrow-up--green {
     width: 30px;
     height: 43px;
     background-position: -333px -160px;
+    fill: green;
     }
 .fullconfig--arrow-up {
     width: 30px;
@@ -44,11 +48,13 @@
     width: 42px;
     height: 42px;
     background-position: -413px -160px;
+    fill: hotpink;
     }
 .fullconfig--home {
     width: 42px;
     height: 42px;
     background-position: -132px -216px;
+    fill: gold;
     }
 .fullconfig--remove {
     width: 12px;

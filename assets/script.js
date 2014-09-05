@@ -43,19 +43,30 @@ function createIconsList(folder,items) {
         var width = item.width.replace("px","");
         var height = item.height.replace("px","");
         var fullIconId = folder + "--" +iconId;
-        var spanClass = folder + " "+ folder +"--" + iconId;
-        spanClass += " demo-icon";
+        var parentIconId = "";
+        var svgClass = folder + " "+ folder +"--" + iconId;
+        svgClass += " demo-icon";
+
+        if (svgIds[fullIconId]){
+            parentIconId = fullIconId;
+        }
+        else {
+            var splitName = iconId.split("--");
+            parentIconId = folder + "--" + splitName[0];
+        }
+
+        var svg = "<svg class=\"svg " + svgClass + "\"><use xlink:href=\"#" + parentIconId + "\"></svg>";
 
         var sizes = "<span class=\"sizes\">" + width +"&times;" + height + "</span>";
 
         icons += "<li class=\"icons-list__item\">";
         icons += "<h5 class=\"icons-list__title\">#" + fullIconId + " "+ sizes + "</h5>";
 
-        icons += "<span class=\"ie8\"><span class=\"" + spanClass + "  demo-icon--png\"></span></span>";
+        icons += "<span class=\"demo-icon demo-icon--png ie8\">" + svg +"</span>";
 
-        if (svgIds[fullIconId]){
-            icons += "<span class=\"" + spanClass + " demo-icon--svg\"><svg><use xlink:href=\"#" + fullIconId + "\"></svg></span>";
-        }
+        // if (svgIds[fullIconId]){
+            icons += "<span class=\"demo-icon demo-icon--svg\">" + svg +"</span>";
+        // }
 
         icons += "</li>";
     }

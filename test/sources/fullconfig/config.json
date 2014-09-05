@@ -5,7 +5,8 @@
             "color": "blue"
         },
         "home": {
-            "height": "42"
+            "height": "42",
+            "color": "gold"
         }
     },
     "icons": {

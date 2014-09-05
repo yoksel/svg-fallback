@@ -33,6 +33,7 @@ module.exports = function(grunt) {
             options = this.options(),
             debug = options.debug,
             config = {},
+            configByFileName = {},
             tempFolder = "temp/",
             svgResizedFolder = tempFolder + "svgResized/",
             svgPreparedFolder = tempFolder + "svgPrepared/",
@@ -57,8 +58,45 @@ module.exports = function(grunt) {
 
         configFiles.forEach(function(filePath) {
             var folder = getFolder(filePath);
-            config[folder] = grunt.file.readJSON(filePath);
+            var configJson = grunt.file.readJSON(filePath);
+            config[folder] = configJson;
+
+            // Fill config with modofoated name as a key
+            // to get later info about modifcation
+            var defSizesConfig = configJson["default-sizes"];
+            var iconsConfig = configJson["icons"];
+
+            if (defSizesConfig){
+                for(var key in defSizesConfig){
+                    var fileConfig = defSizesConfig[key];
+                    if(! configByFileName[folder]){
+                        configByFileName[folder] = {};
+                    }
+                    configByFileName[folder][key] = fileConfig;
+                }
+            }
+
+            if (iconsConfig){
+                for(var key in iconsConfig){
+                    var fileConfig = iconsConfig[key];
+
+                    fileConfig.forEach(function(configsItem){
+                        var fileName = key;
+                        var newName = svgmodify.fileNameModf(key, configsItem);
+                        if(! configByFileName[folder]){
+                            configByFileName[folder] = {};
+                        }
+                        if(!configsItem.color && defSizesConfig && defSizesConfig[fileName] && defSizesConfig[fileName].color){
+                            configsItem.color = defSizesConfig[fileName].color;
+                        }
+
+                        configByFileName[folder][newName] = configsItem;
+                    });
+                }
+            }
         });
+
+        // console.log(configByFileName);
 
         // 0. Resize Svg-icons if config with default sizes is exist
         //------------------------------------------
@@ -172,6 +210,12 @@ module.exports = function(grunt) {
                 var folderOptionsFile = config[folderName];
                 var folderOptions = {};
 
+                if (folderOptionsFile && folderOptionsFile[configKey]){
+                    console.log("\n - folderOptionsFile[configKey]");
+                    console.log(folderOptionsFile[configKey]);
+                    }
+
+
                 // No options at all
                 if (!folderOptionsFile) {
                     copyFiles(inputFolder, destFolder + folderName);
@@ -206,6 +250,10 @@ module.exports = function(grunt) {
                         "folderOptions": folderOptions,
                         "colorize": colorize
                     };
+
+                    // console.log("\n - folderOptions");
+                    // console.log(folderOptions);
+
                     if (configKey != "default-sizes" && color) {
                         changesParams["defaultColor"] = color;
                     }
@@ -522,10 +570,13 @@ module.exports = function(grunt) {
                 var iconConfig = {};
                 var iconColor = "";
 
-                if (config && config[folder] && config[folder]["default-sizes"] && config[folder]["default-sizes"][fileName]) {
-                    iconColor = config[folder]["default-sizes"][fileName]["color"];
+                if (configByFileName[folder] && configByFileName[folder][fileName] && configByFileName[folder][fileName]["color"]){
+                    iconColor = configByFileName[folder][fileName]["color"];
                 }
 
+                // if (config && config[folder] && config[folder]["default-sizes"] && config[folder]["default-sizes"][fileName]) {
+                //     iconColor = config[folder]["default-sizes"][fileName]["color"];
+                // }
 
                 var iconData = {
                     prefix: iconsData.prefix,

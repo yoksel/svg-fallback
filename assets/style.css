@@ -70,10 +70,8 @@ LI {
     margin: 0;
     }
 
-svg {
-    display: block;
-    width: 100%;
-    height: 100%;
+.ie8 USE {
+    display: none;
     }
 
 .demo-icon {
