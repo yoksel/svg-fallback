@@ -1,6 +1,3 @@
-.nodefaults {
-    fill: skyblue;
-    }
 .ie8 .nodefaults {
     background-image: url(nodefaults.png);
     }

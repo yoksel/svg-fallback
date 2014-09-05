@@ -553,7 +553,7 @@ module.exports = function(grunt) {
             iconsData.icons = [];
             iconsData.color = "";
             if (config[folder] && config[folder]["color"]) {
-                iconsData.color = config[folder]["color"];
+                //iconsData.color = config[folder]["color"];
             }
 
             if (iconsData.color) {

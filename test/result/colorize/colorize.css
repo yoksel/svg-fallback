@@ -1,6 +1,3 @@
-.colorize {
-    fill: pink;
-    }
 .ie8 .colorize {
     background-image: url(colorize.png);
     }
