@@ -228,6 +228,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.1.33 - Fix colorizing SVG in CSS
+
 0.1.32 - Fix colorizing when colors come from defaults
 
 0.1.30 - Change delimiter in names of SVG-symbols: was `-`, now `--` - for consistency with class names

@@ -1,3 +1,6 @@
+.fullconfig {
+    fill: orangered;
+    }
 .ie8 .fullconfig {
     background-image: url(fullconfig.png);
     }
@@ -13,15 +16,17 @@
     background-position: -153px 0;
     fill: teal;
     }
-.fullconfig--home--w150--gold {
+.fullconfig--home--w150 {
     width: 150px;
     height: 150px;
     background-position: -333px 0;
+    fill: gold;
     }
-.fullconfig--arrow-up--w50--blue {
+.fullconfig--arrow-up--w50 {
     width: 50px;
     height: 72px;
     background-position: 0 -216px;
+    fill: blue;
     }
 .fullconfig--home--h62--yellowgreen {
     width: 62px;
@@ -57,4 +62,5 @@
     width: 12px;
     height: 12px;
     background-position: -465px -160px;
+    fill: orangered;
     }

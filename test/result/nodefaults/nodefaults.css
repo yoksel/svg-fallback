@@ -1,3 +1,6 @@
+.nodefaults {
+    fill: skyblue;
+    }
 .ie8 .nodefaults {
     background-image: url(nodefaults.png);
     }
@@ -11,6 +14,7 @@
     width: 100px;
     height: 100px;
     background-position: -130px 0;
+    fill: skyblue;
     }
 .nodefaults--home--w70--pink {
     width: 70px;
@@ -22,6 +26,7 @@
     width: 40px;
     height: 58px;
     background-position: -240px -80px;
+    fill: skyblue;
     }
 .nodefaults--arrow-up--gold {
     width: 30px;
@@ -33,6 +38,7 @@
     width: 30px;
     height: 43px;
     background-position: -170px -110px;
+    fill: skyblue;
     }
 .nodefaults--home--w20--yellow {
     width: 20px;
@@ -50,4 +56,5 @@
     width: 12px;
     height: 12px;
     background-position: -240px -148px;
+    fill: skyblue;
     }
