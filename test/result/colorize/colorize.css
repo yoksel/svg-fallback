@@ -8,9 +8,11 @@
     width: 30px;
     height: 43px;
     background-position: 0 0;
+    fill: pink;
     }
 .colorize--home {
     width: 12px;
     height: 12px;
     background-position: -40px 0;
+    fill: pink;
     }
