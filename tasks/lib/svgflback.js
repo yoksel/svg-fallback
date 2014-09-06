@@ -45,29 +45,41 @@ function copyFiles(inputFolder, destFolder) {
     });
 }
 
-function fillConfigFromDefaults(defSizesConfig, folder) {
-    if (defSizesConfig) {
-        for (var key in defSizesConfig) {
-            var fileConfig = defSizesConfig[key];
-            if (!svgflback.configByFileName[folder]) {
-                svgflback.configByFileName[folder] = {};
-            }
-            svgflback.configByFileName[folder][key] = fileConfig;
-        }
-    }
-}
-
-function copyObject(obj) {
+/**
+ * @param {Object} oldObject - initial object
+ * @returns {Object} newObject - copy of initial object
+ */
+function copyObject(oldObject) {
     var newObject = {};
 
-    for (var key in obj) {
-        newObject[key] = obj[key];
+    for (var key in oldObject) {
+        newObject[key] = oldObject[key];
     }
 
     return newObject;
 }
 
-function fillConfigFromIcons(iconsConfig, defSizesConfig, folder) {
+/**
+ * @param {Object} defSizesConfig - config with default settings for files
+ * @param {string} folderName
+ */
+function fillConfigFromDefaults(defSizesConfig, folderName) {
+    if (defSizesConfig) {
+        for (var key in defSizesConfig) {
+            var fileConfig = defSizesConfig[key];
+            if (!svgflback.configByFileName[folderName]) {
+                svgflback.configByFileName[folderName] = {};
+            }
+            svgflback.configByFileName[folderName][key] = fileConfig;
+        }
+    }
+}
+
+/**
+ * @param {Object} iconsConfig - config with variations for files
+ * @param {string} folderName
+ */
+function fillConfigFromIcons(iconsConfig, defSizesConfig, folderName) {
     if (iconsConfig) {
 
         for (var key in iconsConfig) {
@@ -78,15 +90,15 @@ function fillConfigFromIcons(iconsConfig, defSizesConfig, folder) {
 
                 var fileName = key;
                 var newName = svgmodify.fileNameModf(key, configsItem);
-                if (!svgflback.configByFileName[folder]) {
-                    svgflback.configByFileName[folder] = {};
+                if (!svgflback.configByFileName[folderName]) {
+                    svgflback.configByFileName[folderName] = {};
                 }
 
                 // Shape has no initial fill color
                 if (!configsItem.color) {
 
-                    if (svgflback.config[folder] && svgflback.config[folder].color) {
-                        configsItem.color = svgflback.config[folder].color;
+                    if (svgflback.config[folderName] && svgflback.config[folderName].color) {
+                        configsItem.color = svgflback.config[folderName].color;
                     }
 
                     if (defSizesConfig && defSizesConfig[fileName] && defSizesConfig[fileName].color) {
@@ -95,11 +107,15 @@ function fillConfigFromIcons(iconsConfig, defSizesConfig, folder) {
                 }
 
 
-                svgflback.configByFileName[folder][newName] = configsItem;
+                svgflback.configByFileName[folderName][newName] = configsItem;
             });
         }
     }
 }
+
+/**
+ * @param {string} configPath - url of files with configs
+ */
 
 svgflback.prepareConfigs = function(configPath) {
 
@@ -274,11 +290,15 @@ svgflback.processFolder = function(params) {
             return;
         }
 
-        if (folderOptionsFile[configKey]) {
+        var folderOptions = folderOptionsFile[configKey];
 
-            var defaults = folderOptionsFile["default-sizes"];
+        // if we need variations but they aren't exist, use defaults
+        if (!folderOptions && configKey === "icons" && defaults) {
+            folderOptions = defaults;
+        }
 
-            folderOptions = folderOptionsFile[configKey];
+        if (folderOptions) {
+
             changesParams = {
                 "inputFolder": inputFolder,
                 "outputFolder": destFolder,
@@ -286,11 +306,11 @@ svgflback.processFolder = function(params) {
                 "colorize": colorize
             };
 
-            if (configKey != "default-sizes" && color) {
+            if (configKey !== "default-sizes" && color) {
                 changesParams["defaultColor"] = color;
             }
 
-            if (configKey != "default-sizes" && defaults) {
+            if (configKey !== "default-sizes" && defaults) {
                 changesParams["defaults"] = defaults;
             }
 

@@ -1,0 +1,20 @@
+.ie8 .defaultsonly {
+    background-image: url(defaultsonly.png);
+    }
+.defaultsonly--home {
+    width: 63px;
+    height: 63px;
+    background-position: 0 0;
+    fill: brown;
+    }
+.defaultsonly--arrow-up {
+    width: 30px;
+    height: 43px;
+    background-position: -73px 0;
+    fill: yellow;
+    }
+.defaultsonly--remove {
+    width: 12px;
+    height: 12px;
+    background-position: 0 -73px;
+    }

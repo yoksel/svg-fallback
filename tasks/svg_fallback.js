@@ -73,6 +73,7 @@ module.exports = function(grunt) {
 
         // 1. Create  SVG library
         //------------------------------------------
+
         var sources = grunt.file.expand(svgResizedFolder + "**/*.svg");
         svgflback.createSvgLib(sources);
 
@@ -115,10 +116,14 @@ module.exports = function(grunt) {
             async.eachSeries(svgSrcFolders, convertToPng, convertToPngCallback);
         }
 
-        function convertToPng(folder, callback) {
+        /**
+         * @param {string} folderName
+         * @param {Function} callback
+         */
+        function convertToPng(folderName, callback) {
 
-            var srcSvgFolder = svgProcessedFolder + folder;
-            var destPngFolder = pngFolder + folder;
+            var srcSvgFolder = svgProcessedFolder + folderName;
+            var destPngFolder = pngFolder + folderName;
 
             svgToPng.convert(srcSvgFolder, destPngFolder) // async, returns promise
             .then(function() {
@@ -209,7 +214,13 @@ module.exports = function(grunt) {
             return val;
         }
 
-        function getIconData(key, coordinates, folder) {
+        /**
+         * @param {string} key - name of file
+         * @param {Object} coordinates - info about images in sprite
+         * @param {string} folderName
+         * @returns {Object} iconData
+         */
+        function getIconData(key, coordinates, folderName) {
             var config = svgflback.config;
             var configByFileName = svgflback.configByFileName;
 
@@ -219,16 +230,16 @@ module.exports = function(grunt) {
             var iconConfig = {};
             var iconColor = "";
 
-            if (configByFileName[folder] && configByFileName[folder][fileName] && configByFileName[folder][fileName]["color"]) {
+            if (configByFileName[folderName] && configByFileName[folderName][fileName] && configByFileName[folderName][fileName]["color"]) {
                 // first try to take color from configByFileName
-                iconColor = configByFileName[folder][fileName]["color"];
-            } else if (config && config[folder] && config[folder].color) {
+                iconColor = configByFileName[folderName][fileName]["color"];
+            } else if (config && config[folderName] && config[folderName].color) {
                 // second try - find default color in initial config
-                iconColor = config[folder].color;
+                iconColor = config[folderName].color;
             }
 
             var iconData = {
-                prefix: folder,
+                prefix: folderName,
                 name: fileName,
                 width: checkUnits("width", item.width),
                 height: checkUnits("height", item.height),
@@ -239,6 +250,7 @@ module.exports = function(grunt) {
 
             return iconData;
         }
+
         /**
          * Write CSS for sprite to file
          * @param {Object} coordinates of created sprite
