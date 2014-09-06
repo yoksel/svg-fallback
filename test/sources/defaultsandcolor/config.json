@@ -1,0 +1,11 @@
+{
+    "color": "yellowgreen",
+    "default-sizes": {
+        "arrow-up": {
+            "color": "yellow"
+        },
+        "home": {
+            "height": "63"
+        }
+    }
+}
