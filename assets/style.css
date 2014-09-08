@@ -73,7 +73,7 @@ LI {
 .textfield--code {
     display: block;
     width: 400px;
-    height: 30px;
+    height: 4em;
     margin-top: 1em;
     padding: .6em;
     border: 1px solid #ccc;
@@ -120,3 +120,8 @@ LI {
             content: "PNG";
             background: skyblue;
         }
+
+/* For testing custom style in SVG-element */
+.svgicon {
+    visibility: visible !important;
+    }

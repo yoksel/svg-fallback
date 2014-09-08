@@ -44,7 +44,14 @@ function createIconsList(folder,items) {
         var height = item.height.replace("px","");
         var fullIconId = folder + "--" +iconId;
         var parentIconId = "";
-        var svgClass = folder + " "+ folder +"--" + iconId;
+        var svgClassFromConfig = svgclass ? svgclass : "svg";
+        var svgStyleFromConfig = svgstyle ? svgstyle : "";
+
+        if (svgStyleFromConfig){
+            svgStyleFromConfig = " style=\"" + svgStyleFromConfig +"\"";
+        }
+
+        var svgElemClass = svgClassFromConfig + " " + folder + " "+ folder +"--" + iconId;
 
         if (svgIds[fullIconId]){
             parentIconId = fullIconId;
@@ -54,7 +61,7 @@ function createIconsList(folder,items) {
             parentIconId = folder + "--" + splitName[0];
         }
 
-        var svg = "<svg class=\"svg " + svgClass + "\"><use xlink:href=\"#" + parentIconId + "\"></svg>";
+        var svg = "<svg class=\"" + svgElemClass + "\" "+ svgStyleFromConfig + "\"><use xlink:href=\"#" + parentIconId + "\"></svg>";
 
         var sizes = "<span class=\"sizes\">" + width +"&times;" + height + "</span>";
 

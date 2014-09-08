@@ -70,6 +70,16 @@ Default value: `10`
 
 List of spritesmith options is here: [npmjs.org/package/spritesmith](https://www.npmjs.org/package/spritesmith)
 
+#### options.svgclass
+Type: `String`
+
+Custom class for SVG element
+
+#### options.svgstyle
+Type: `String`
+
+Custom `style` for SVG element
+
 ### Usage Examples
 
 #### Default:
@@ -227,6 +237,8 @@ Add SVG-library to the page and add particular icons this way:
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+
+0.1.36 - Add options for custom class for svg (`svgclass`) and for custom style (`svgstyle`)
 
 0.1.35 - Add text fields for easy copying and using icons
 

@@ -34,6 +34,8 @@ module.exports = function(grunt) {
             destIndex = dest + "index.html",
             options = this.options(),
             debug = options.debug,
+            svgclass = options.svgclass ? options.svgclass : "svg",
+            svgstyle  = options.svgstyle ? options.svgstyle : "",
             tempFolder = "temp/",
             svgResizedFolder = tempFolder + "svgResized/",
             svgPreparedFolder = tempFolder + "svgPrepared/",
@@ -322,6 +324,8 @@ module.exports = function(grunt) {
             var indexData = {
                 "js": jsFile,
                 "css": cssFile,
+                "svgclass": svgclass,
+                "svgstyle": svgstyle,
                 "resultCss": svgflback.resultCss,
                 "resultSvg": svgflback.resultSvg,
                 "iconsDataList": JSON.stringify(svgflback.resultIconsData)

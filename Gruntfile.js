@@ -19,7 +19,9 @@ module.exports = function(grunt) {
         // Configuration to be run (and then tested).
         svg_fallback: {
             options: {
-                debug: true
+                debug: true,
+                svgclass: "svgicon",
+                svgstyle: "pointer-events: none; visibility: hidden;"
             },
             your_target: {
                 src: 'test/sources/',

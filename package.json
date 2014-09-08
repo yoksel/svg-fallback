@@ -1,7 +1,7 @@
 {
     "name": "svg_fallback",
     "description": "Generates SVG library and PNG+CSS fallback.",
-    "version": "0.1.35",
+    "version": "0.1.36",
     "homepage": "https://github.com/yoksel/svg-fallback",
     "author": {
         "name": "yoksel",
