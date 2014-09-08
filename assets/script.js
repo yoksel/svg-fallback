@@ -45,7 +45,6 @@ function createIconsList(folder,items) {
         var fullIconId = folder + "--" +iconId;
         var parentIconId = "";
         var svgClass = folder + " "+ folder +"--" + iconId;
-        svgClass += " demo-icon";
 
         if (svgIds[fullIconId]){
             parentIconId = fullIconId;
@@ -63,10 +62,11 @@ function createIconsList(folder,items) {
         icons += "<h5 class=\"icons-list__title\">#" + fullIconId + " "+ sizes + "</h5>";
 
         icons += "<span class=\"demo-icon demo-icon--png ie8\">" + svg +"</span>";
-
         // if (svgIds[fullIconId]){
             icons += "<span class=\"demo-icon demo-icon--svg\">" + svg +"</span>";
         // }
+
+        icons += "<textarea class=\"textfield--code\"  spellcheck=\"false\">" + svg + "</textarea>";
 
         icons += "</li>";
     }

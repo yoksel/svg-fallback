@@ -228,6 +228,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.1.35 - Add text fields for easy copying and using icons
+
 0.1.34 - Fix colorizing PNG if there aren't variations for files in config
 
 0.1.33 - Fix colorizing SVG in CSS

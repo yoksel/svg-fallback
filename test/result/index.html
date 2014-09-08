@@ -82,6 +82,22 @@ LI {
     margin: 0;
     }
 
+.textfield--code {
+    display: block;
+    width: 400px;
+    height: 30px;
+    margin-top: 1em;
+    padding: .6em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    opacity: .5;
+    }
+    .textfield--code:hover,
+    .textfield--code:active,
+    .textfield--code:focus {
+        opacity: 1;
+        }
+
 .ie8 USE {
     display: none;
     }
@@ -90,6 +106,7 @@ LI {
     position: relative;
     display: block;
     float: right;
+    margin-bottom: 1em;
     border: 1px solid #DDD;
     }
     .demo-icon--svg {
@@ -211,7 +228,6 @@ function createIconsList(folder,items) {
         var fullIconId = folder + "--" +iconId;
         var parentIconId = "";
         var svgClass = folder + " "+ folder +"--" + iconId;
-        svgClass += " demo-icon";
 
         if (svgIds[fullIconId]){
             parentIconId = fullIconId;
@@ -229,10 +245,11 @@ function createIconsList(folder,items) {
         icons += "<h5 class=\"icons-list__title\">#" + fullIconId + " "+ sizes + "</h5>";
 
         icons += "<span class=\"demo-icon demo-icon--png ie8\">" + svg +"</span>";
-
         // if (svgIds[fullIconId]){
             icons += "<span class=\"demo-icon demo-icon--svg\">" + svg +"</span>";
         // }
+
+        icons += "<textarea class=\"textfield--code\"  spellcheck=\"false\">" + svg + "</textarea>";
 
         icons += "</li>";
     }

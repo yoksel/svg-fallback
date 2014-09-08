@@ -70,6 +70,22 @@ LI {
     margin: 0;
     }
 
+.textfield--code {
+    display: block;
+    width: 400px;
+    height: 30px;
+    margin-top: 1em;
+    padding: .6em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    opacity: .5;
+    }
+    .textfield--code:hover,
+    .textfield--code:active,
+    .textfield--code:focus {
+        opacity: 1;
+        }
+
 .ie8 USE {
     display: none;
     }
@@ -78,6 +94,7 @@ LI {
     position: relative;
     display: block;
     float: right;
+    margin-bottom: 1em;
     border: 1px solid #DDD;
     }
     .demo-icon--svg {
