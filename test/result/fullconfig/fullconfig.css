@@ -34,17 +34,17 @@
     background-position: -60px -216px;
     fill: yellowgreen;
     }
-.fullconfig--arrow-up--green {
-    width: 30px;
-    height: 43px;
-    background-position: -333px -160px;
-    fill: green;
-    }
 .fullconfig--arrow-up {
     width: 30px;
     height: 43px;
-    background-position: -373px -160px;
+    background-position: -333px -160px;
     fill: blue;
+    }
+.fullconfig--arrow-up--green {
+    width: 30px;
+    height: 43px;
+    background-position: -373px -160px;
+    fill: green;
     }
 .fullconfig--home--hotpink {
     width: 42px;
@@ -52,10 +52,22 @@
     background-position: -413px -160px;
     fill: hotpink;
     }
-.fullconfig--home {
+.fullconfig--home--ff9900 {
     width: 42px;
     height: 42px;
     background-position: -132px -216px;
+    fill: #FF9900;
+    }
+.fullconfig--home--336699 {
+    width: 42px;
+    height: 42px;
+    background-position: -184px -216px;
+    fill: #336699;
+    }
+.fullconfig--home {
+    width: 42px;
+    height: 42px;
+    background-position: -236px -216px;
     fill: gold;
     }
 .fullconfig--remove {
