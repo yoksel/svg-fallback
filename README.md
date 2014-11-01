@@ -238,6 +238,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.1.38 - Fix creating file modifications with hex colors
+
 0.1.36 - Add options for custom class for svg (`svgclass`) and for custom style (`svgstyle`)
 
 0.1.35 - Add text fields for easy copying and using icons
