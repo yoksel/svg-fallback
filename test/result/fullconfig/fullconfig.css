@@ -1,8 +1,13 @@
 .fullconfig {
     fill: orangered;
     }
-.ie8 .fullconfig {
+.fullconfig {
     background-image: url(fullconfig.png);
+    /* This hides bg-image in modern browsers except IE9 */
+    background: -webkit-linear-gradient(transparent, transparent);
+    background: linear-gradient(transparent, transparent);
+    /* This hides bg-image in IE9 */
+    background-position: -1000vh 0;
     }
 .fullconfig--arrow-up--w143--steelblue {
     width: 143px;

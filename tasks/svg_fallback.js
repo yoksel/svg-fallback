@@ -36,6 +36,7 @@ module.exports = function(grunt) {
             debug = options.debug,
             svgclass = options.svgclass ? options.svgclass : "svg",
             svgstyle  = options.svgstyle ? options.svgstyle : "",
+            usei8class = options.usei8class ? options.usei8class : false,
             tempFolder = "temp/",
             svgResizedFolder = tempFolder + "svgResized/",
             svgPreparedFolder = tempFolder + "svgPrepared/",
@@ -263,6 +264,7 @@ module.exports = function(grunt) {
             var filePath = folder + "/" + folder + ".css";
             var destCssFile = dest + filePath;
             var prefixIe8Template = grunt.file.read(templatesFolder + "/prefix--ie8.css");
+            var prefixWithFallbackTemplate = grunt.file.read(templatesFolder + "/prefix--fallback.css");
             var prefixFillTemplate = grunt.file.read(templatesFolder + "/prefix--fill.css");
             var iconFillTemplate = grunt.file.read(templatesFolder + "/icon--fill.css");
             var iconNoFillTemplate = grunt.file.read(templatesFolder + "/icon--no-fill.css");
@@ -283,7 +285,12 @@ module.exports = function(grunt) {
                 outputCss += mustache.render(prefixFillTemplate, iconsData);
             }
 
-            outputCss += mustache.render(prefixIe8Template, iconsData);
+            if ( usei8class ) {
+                outputCss += mustache.render(prefixIe8Template, iconsData);
+            }
+            else {
+                outputCss += mustache.render(prefixWithFallbackTemplate, iconsData);
+            }
 
             for (var key in coordinates) {
                 var iconData = getIconData(key, coordinates, folder);
@@ -320,6 +327,8 @@ module.exports = function(grunt) {
             var indexTemplate = grunt.file.read(templatesFolder + "/index.html");
             var jsFile = grunt.file.read(assetsFolder + "/script.js");
             var cssFile = grunt.file.read(assetsFolder + "/style.css");
+
+            cssFile += ".test {color: red;}";
 
             var indexData = {
                 "js": jsFile,
