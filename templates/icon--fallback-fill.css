@@ -1,8 +1,10 @@
 .{{prefix}} {
+    display: inline-block;
     background-image: url({{{spriteurl}}});
     /* This hides bg-image in modern browsers except IE9 */
     background: -webkit-linear-gradient(transparent, transparent);
     background: linear-gradient(transparent, transparent);
     /* This hides bg-image in IE9 */
-    background-position: -1000vh 0;
+    background-position: -1000vh 0 !important;
+    fill: {{color}};
     }

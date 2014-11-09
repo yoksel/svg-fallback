@@ -1,3 +1,4 @@
 .ie8 .{{prefix}} {
+    display: inline-block;
     background-image: url({{{spriteurl}}});
     }

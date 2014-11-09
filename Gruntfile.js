@@ -21,6 +21,7 @@ module.exports = function(grunt) {
             options: {
                 debug: true,
                 svgclass: "svgicon",
+                // usei8class: true,
                 svgstyle: "pointer-events: none; visibility: hidden;"
             },
             your_target: {

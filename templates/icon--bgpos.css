@@ -1,0 +1,3 @@
+.{{prefix}}--{{name}} {
+    background-position: {{x}} {{y}} !important;
+    }

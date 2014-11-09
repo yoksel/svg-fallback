@@ -7,7 +7,7 @@ Generates SVG library and PNG+CSS fallback.
 Plugin takes folders with SVG and generates:
 
 1. SVG-library for using with `<use xlink:href="#symbolName"/>`
-2. Fallback for IE8: sprite + CSS.
+2. Fallback for old browsers: sprite + CSS.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -79,6 +79,12 @@ Custom class for SVG element
 Type: `String`
 
 Custom `style` for SVG element
+
+#### options.usei8class
+Type: `Bool`
+
+Default value: `false`
+Set `true` if you need `.ie8` class only, without universal fallback for the most of old browsers
 
 ### Usage Examples
 
@@ -201,11 +207,40 @@ result
 
 myicons.css:
 
+With universal fallback:
+
+```css
+.myicons {
+    display: inline-block;
+    background-image: url(myicons.png);
+    /* This hides bg-image in modern browsers except IE9 */
+    background: -webkit-linear-gradient(transparent, transparent);
+    background: linear-gradient(transparent, transparent);
+    /* This hides bg-image in IE9 */
+    background-position: -1000vh 0 !important;
+    fill: orangered;
+    }
+.myicons--mail {
+    width: 182px;
+    height: 262px;
+    background-position: -192px 0;
+    }
+.myicons--mail--green {
+    width: 182px;
+    height: 262px;
+    background-position: 0 0;
+    fill: green;
+    }
+```
+
+With IE8 only fallback:
+
 ```css
 .myicons {
     fill: orangered;
     }
 .ie8 .myicons {
+    display: inline-block;
     background-image: url(myicons.png);
     }
 .myicons--mail {
@@ -238,30 +273,32 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
-0.1.38 - Fix creating file modifications with hex colors
+0.2.0 — Universal fallback is added. Works for Android 2.x, Opera Mini, IE8. Fix preview for old browsers.
 
-0.1.36 - Add options for custom class for svg (`svgclass`) and for custom style (`svgstyle`)
+0.1.38 — Fix creating file modifications with hex colors
 
-0.1.35 - Add text fields for easy copying and using icons
+0.1.36 — Add options for custom class for svg (`svgclass`) and for custom style (`svgstyle`)
 
-0.1.34 - Fix colorizing PNG if there aren't variations for files in config
+0.1.35 — Add text fields for easy copying and using icons
 
-0.1.33 - Fix colorizing SVG in CSS
+0.1.34 — Fix colorizing PNG if there aren't variations for files in config
 
-0.1.32 - Fix colorizing when colors come from defaults
+0.1.33 — Fix colorizing SVG in CSS
 
-0.1.30 - Change delimiter in names of SVG-symbols: was `-`, now `--` - for consistency with class names
+0.1.32 — Fix colorizing when colors come from defaults
 
-0.1.26 - Move changing SVG functions to module [svg-modify](https://www.npmjs.org/package/svg-modify)
+0.1.30 — Change delimiter in names of SVG-symbols: was `-`, now `--` — for consistency with class names
 
-0.1.24 - Fix behavior for folders without config
+0.1.26 — Move changing SVG functions to module [svg-modify](https://www.npmjs.org/package/svg-modify)
 
-0.1.20 - Add prefix for sizes to names of files
+0.1.24 — Fix behavior for folders without config
 
-0.1.16 - Add config for resize SVG-images to default sizes
+0.1.20 — Add prefix for sizes to names of files
 
-0.1.15 - Add opening demo page in default browser
+0.1.16 — Add config for resize SVG-images to default sizes
 
-0.1.14 - Add icons sizes to demo list
+0.1.15 — Add opening demo page in default browser
 
-0.1.13 - Add property `fill` to CSS
+0.1.14 — Add icons sizes to demo list
+
+0.1.13 — Add property `fill` to CSS
