@@ -61,7 +61,7 @@ function createIconsList(folder,items) {
             parentIconId = folder + "--" + splitName[0];
         }
 
-        var svg = "<svg class=\"" + svgElemClass + "\" "+ svgStyleFromConfig + "><use xlink:href=\"#" + parentIconId + "\"></svg>";
+        var svg = "<svg xmlns=\"http://www.w3.org/2000/svg\"  class=\"" + svgElemClass + "\" "+ svgStyleFromConfig + "><use xlink:href=\"#" + parentIconId + "\"></svg>";
 
         var sizes = "<span class=\"sizes\">" + width +"&times;" + height + "</span>";
 

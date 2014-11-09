@@ -1,8 +1,13 @@
 .defaultsandcolor {
     fill: yellowgreen;
     }
-.ie8 .defaultsandcolor {
+.defaultsandcolor {
     background-image: url(defaultsandcolor.png);
+    /* This hides bg-image in modern browsers except IE9 */
+    background: -webkit-linear-gradient(transparent, transparent);
+    background: linear-gradient(transparent, transparent);
+    /* This hides bg-image in IE9 */
+    background-position: -1000vh 0;
     }
 .defaultsandcolor--home {
     width: 63px;
