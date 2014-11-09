@@ -42,6 +42,7 @@ module.exports = function(grunt) {
             svgPreparedFolder = tempFolder + "svgPrepared/",
             svgProcessedFolder = tempFolder + "svgProcessed/",
             pngFolder = tempFolder + "png/",
+            showPngCss = "",
             imgOpts = {
                 'format': 'png'
             };
@@ -51,6 +52,7 @@ module.exports = function(grunt) {
         svgflback.resultSvg = [];
         svgflback.resultCss = [];
         svgflback.resultIconsData = [];
+        svgflback.resultHtml = "";
 
         var cb = this.async();
 
@@ -260,36 +262,46 @@ module.exports = function(grunt) {
          */
         function writeCss(folder, coordinates) {
 
-            var outputCss = "";
-            var filePath = folder + "/" + folder + ".css";
-            var destCssFile = dest + filePath;
-            var prefixIe8Template = grunt.file.read(templatesFolder + "/prefix--ie8.css");
-            var prefixWithFallbackTemplate = grunt.file.read(templatesFolder + "/prefix--fallback.css");
-            var prefixFillTemplate = grunt.file.read(templatesFolder + "/prefix--fill.css");
-            var iconFillTemplate = grunt.file.read(templatesFolder + "/icon--fill.css");
-            var iconNoFillTemplate = grunt.file.read(templatesFolder + "/icon--no-fill.css");
+            var outputCss = "",
+                filePath = folder + "/" + folder + ".css",
+                destCssFile = dest + filePath,
+                prefixIe8Template = grunt.file.read(templatesFolder + "/icon--ie8.css"),
+                prefixWithFallbackTemplate = grunt.file.read(templatesFolder + "/icon--fallback.css"),
+                prefixWithFallbackFillTemplate = grunt.file.read(templatesFolder + "/icon--fallback-fill.css"),
+                prefixDemoPngTemplate = grunt.file.read(templatesFolder + "/icon--demopng.css"),
+                prefixFillTemplate = grunt.file.read(templatesFolder + "/icon--common-fill.css"),
+                iconFillTemplate = grunt.file.read(templatesFolder + "/icon--fill.css"),
+                iconNoFillTemplate = grunt.file.read(templatesFolder + "/icon--no-fill.css"),
+                iconBgPosTemplate = grunt.file.read(templatesFolder + "/icon--bgpos.css"),
+                iconItemTemplate = grunt.file.read(templatesFolder + "/icon--item.html"),
+                config = svgflback.config,
+                configByFileName = svgflback.configByFileName;
 
             var iconsData = {};
-            iconsData.spriteurl = path.basename(dest + folder + "/" + folder + ".png");
+            iconsData.spriteurl = folder + ".png";
+            iconsData.spriteFullUrl = folder + "/" + folder + ".png";
             iconsData.prefix = folder;
             iconsData.icons = [];
             iconsData.color = "";
-            var config = svgflback.config;
-            var configByFileName = svgflback.configByFileName;
 
             if (config[folder] && config[folder]["color"]) {
                 iconsData.color = config[folder]["color"];
             }
 
-            if (iconsData.color) {
-                outputCss += mustache.render(prefixFillTemplate, iconsData);
-            }
-
-            if ( usei8class ) {
+            if (usei8class) {
+                if (iconsData.color) {
+                    outputCss += mustache.render(prefixFillTemplate, iconsData);
+                }
+                // Use template with .ie8
                 outputCss += mustache.render(prefixIe8Template, iconsData);
             }
             else {
+                if (iconsData.color) {
+                    prefixWithFallbackTemplate = prefixWithFallbackFillTemplate;
+                }
+                // Use template with bacground fallback
                 outputCss += mustache.render(prefixWithFallbackTemplate, iconsData);
+                showPngCss += mustache.render(prefixDemoPngTemplate, iconsData);
             }
 
             for (var key in coordinates) {
@@ -301,6 +313,8 @@ module.exports = function(grunt) {
                 }
 
                 outputCss += mustache.render(iconTemplate, iconData);
+                showPngCss += mustache.render(iconBgPosTemplate, iconData);
+                svgflback.resultHtml += mustache.render(iconItemTemplate, iconData);
                 iconsData.icons.push(iconData);
             }
 
@@ -320,23 +334,95 @@ module.exports = function(grunt) {
 
         }
 
+        function createIconsGroup(folder, items){
+            var icons = "",
+                iconSvgTemplate = grunt.file.read(templatesFolder + "/icon--svg.html"),
+                iconItemTemplate = grunt.file.read(templatesFolder + "/icon--item.html");
+
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+                var iconId = item.name;
+                var width = item.width.replace("px","");
+                var height = item.height.replace("px","");
+                var fullIconId = folder + "--" +iconId;
+                var parentIconId = "";
+                var svgClassFromConfig = svgclass ? svgclass : "svg";
+                var svgStyleFromConfig = svgstyle ? svgstyle : "";
+
+                if (svgStyleFromConfig){
+                    svgStyleFromConfig = " style=\"" + svgStyleFromConfig +"\"";
+                }
+
+                var svgElemClass = svgClassFromConfig + " " + folder + " "+ folder +"--" + iconId;
+
+                var splitName = iconId.split("--");
+                parentIconId = folder + "--" + splitName[0];
+
+                var svgData = {
+                    "svgElemClass": svgElemClass,
+                    "parentIconId": parentIconId,
+                    "svgStyleFromConfig": svgStyleFromConfig
+                    };
+
+                var svg = mustache.render(iconSvgTemplate, svgData);
+                var sizes = "<span class=\"sizes\">" + width +"&times;" + height + "</span>";
+
+                var itemData = {
+                    "fullIconId": fullIconId,
+                    "svg": svg,
+                    "sizes": sizes
+                    };
+
+                icons += mustache.render(iconItemTemplate, itemData);
+            }
+
+            icons ="<ul class=\"icons-list\">" + icons + "</ul>";
+
+            return icons;
+        }
+
+        function createIconsList() {
+            var output = "";
+
+            var iconsDataList = svgflback.resultIconsData;
+
+            for (var i = 0; i < iconsDataList.length; i++) {
+                var item = iconsDataList[i];
+
+                var folder = item["folder"];
+                var color = item["color"] ? item["color"] : "none";
+                var iconsData = item["iconsData"];
+
+                output += "<h4>Folder: " + folder +" (" + iconsData.length +")</h4>";
+                output += "Default color: " + color +" <span class=\"color\" style=\"background: " + color +"\"></span>";
+                output += createIconsGroup(folder, iconsData);
+            }
+            return output;
+        }
+
         /**
          * Create page with both SVG and PNG Icons
          */
         function createControlPage() {
             var indexTemplate = grunt.file.read(templatesFolder + "/index.html");
-            var jsFile = grunt.file.read(assetsFolder + "/script.js");
             var cssFile = grunt.file.read(assetsFolder + "/style.css");
 
-            cssFile += ".test {color: red;}";
+            if (!usei8class) {
+                cssFile += "\n\n/*\n";
+                cssFile += "Additional CSS is needed to check displaying of PNG images";
+                cssFile += "\n*/\n\n";
+                cssFile += showPngCss;
+            }
+
+            svgflback.resultHtml = createIconsList();
 
             var indexData = {
-                "js": jsFile,
                 "css": cssFile,
                 "svgclass": svgclass,
                 "svgstyle": svgstyle,
                 "resultCss": svgflback.resultCss,
                 "resultSvg": svgflback.resultSvg,
+                "resultHtml": svgflback.resultHtml,
                 "iconsDataList": JSON.stringify(svgflback.resultIconsData)
             };
 
