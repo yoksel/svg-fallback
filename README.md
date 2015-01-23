@@ -273,6 +273,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.2.1 — Plugin find unclosed tags and close it. From now you can set particular folder from set using param `folder`.
+
 0.2.0 — Universal fallback is added. Works for Android 2.x, Opera Mini, IE8. Fix preview for old browsers.
 
 0.1.38 — Fix creating file modifications with hex colors
