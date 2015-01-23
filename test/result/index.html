@@ -3,12 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Icons preview</title>
-    <link rel="stylesheet" href="colorize/colorize.css">
-    <link rel="stylesheet" href="defaultsandcolor/defaultsandcolor.css">
-    <link rel="stylesheet" href="defaultsonly/defaultsonly.css">
     <link rel="stylesheet" href="fullconfig/fullconfig.css">
-    <link rel="stylesheet" href="noconfig/noconfig.css">
-    <link rel="stylesheet" href="nodefaults/nodefaults.css">
     <style>
 BODY {
     font: 16px/1.4 "Trebuchet MS", Arial, sans-serif;
@@ -147,39 +142,6 @@ For testing custom style in SVG-element 
 Additional CSS is needed to check displaying of PNG images
 */
 
-.demo-icon--png .colorize {
-    background: url(colorize/colorize.png);
-    }
-.colorize--arrow-up {
-    background-position: 0 0 !important;
-    }
-.colorize--home {
-    background-position: -40px 0 !important;
-    }
-.demo-icon--png .defaultsandcolor {
-    background: url(defaultsandcolor/defaultsandcolor.png);
-    }
-.defaultsandcolor--home {
-    background-position: 0 0 !important;
-    }
-.defaultsandcolor--arrow-up {
-    background-position: -73px 0 !important;
-    }
-.defaultsandcolor--remove {
-    background-position: 0 -73px !important;
-    }
-.demo-icon--png .defaultsonly {
-    background: url(defaultsonly/defaultsonly.png);
-    }
-.defaultsonly--home {
-    background-position: 0 0 !important;
-    }
-.defaultsonly--arrow-up {
-    background-position: -73px 0 !important;
-    }
-.defaultsonly--remove {
-    background-position: 0 -73px !important;
-    }
 .demo-icon--png .fullconfig {
     background: url(fullconfig/fullconfig.png);
     }
@@ -219,45 +181,6 @@ Additional CSS is needed to check displaying of PNG images
 .fullconfig--remove {
     background-position: -465px -160px !important;
     }
-.demo-icon--png .noconfig {
-    background: url(noconfig/noconfig.png);
-    }
-.noconfig--arrow-up {
-    background-position: 0 0 !important;
-    }
-.noconfig--home {
-    background-position: -40px 0 !important;
-    }
-.demo-icon--png .nodefaults {
-    background: url(nodefaults/nodefaults.png);
-    }
-.nodefaults--arrow-up--w120--orange {
-    background-position: 0 0 !important;
-    }
-.nodefaults--home--w100 {
-    background-position: -130px 0 !important;
-    }
-.nodefaults--home--w70--pink {
-    background-position: -240px 0 !important;
-    }
-.nodefaults--arrow-up--w40 {
-    background-position: -240px -80px !important;
-    }
-.nodefaults--arrow-up--gold {
-    background-position: -130px -110px !important;
-    }
-.nodefaults--arrow-up {
-    background-position: -170px -110px !important;
-    }
-.nodefaults--home--w20--yellow {
-    background-position: -290px -80px !important;
-    }
-.nodefaults--home--yellowgreen {
-    background-position: -290px -110px !important;
-    }
-.nodefaults--home {
-    background-position: -240px -148px !important;
-    }
 
     </style>
 </head>
@@ -265,198 +188,76 @@ Additional CSS is needed to check displaying of PNG images
 
     <div class="svg-defs">
         <div id="svg-icons">
-            <div data-folder="colorize">
-                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><symbol id="colorize--arrow-up" viewBox="0 0 30 43.168"><g fill="pink"><path d="M17.143,7.882v35.286h-4.286V7.882L3,17.634L0,14.7L14.143,0.755L15,0l0.857,0.755L30,14.7l-3,2.935L17.143,7.882L17.143,7.882z"/></g></symbol>
-<symbol id="colorize--home" viewBox="0 0 12 12"><g fill="pink"><path d="M12 6.919l-6-4.657-6 4.657v-1.899l6-4.657 6 4.657zM10.5 6.75v4.5h-3v-3h-3v3h-3v-4.5l4.5-3.375z"/></g></symbol>
-</svg>
-            </div>
-            <div data-folder="defaultsandcolor">
-                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><symbol id="defaultsandcolor--arrow-up" viewBox="0 0 30 43.168"><path d="M17.143,7.882v35.286h-4.286V7.882L3,17.634L0,14.7L14.143,0.755L15,0l0.857,0.755L30,14.7l-3,2.935L17.143,7.882L17.143,7.882z"/></symbol>
-<symbol id="defaultsandcolor--home" viewBox="0 0 12 12"><path d="M12 6.919l-6-4.657-6 4.657v-1.899l6-4.657 6 4.657zM10.5 6.75v4.5h-3v-3h-3v3h-3v-4.5l4.5-3.375z"/></symbol>
-<symbol id="defaultsandcolor--remove" viewBox="0 0 12 12"><path d="M9.375 1.5h-6.75c-0.621 0-1.125 0.504-1.125 1.125v0.375h9v-0.375c0-0.621-0.504-1.125-1.125-1.125zM7.41 0.75l0.165 1.184h-3.151l0.165-1.184h2.82zM7.5 0h-3c-0.309 0-0.598 0.251-0.64 0.557l-0.219 1.569c-0.043 0.306 0.175 0.557 0.485 0.557h3.75c0.309 0 0.527-0.251 0.485-0.557l-0.219-1.569c-0.043-0.306-0.331-0.557-0.64-0.557v0zM9.563 3.75h-7.125c-0.412 0-0.719 0.336-0.682 0.747l0.614 6.756c0.037 0.411 0.405 0.747 0.818 0.747h5.625c0.413 0 0.781-0.336 0.818-0.747l0.614-6.756c0.037-0.411-0.27-0.747-0.682-0.747zM4.5 10.5h-1.125l-0.375-5.25h1.5v5.25zM6.75 10.5h-1.5v-5.25h1.5v5.25zM8.625 10.5h-1.125v-5.25h1.5l-0.375 5.25z"/></symbol>
-</svg>
-            </div>
-            <div data-folder="defaultsonly">
-                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><symbol id="defaultsonly--arrow-up" viewBox="0 0 30 43.168"><path d="M17.143,7.882v35.286h-4.286V7.882L3,17.634L0,14.7L14.143,0.755L15,0l0.857,0.755L30,14.7l-3,2.935L17.143,7.882L17.143,7.882z"/></symbol>
-<symbol id="defaultsonly--home" viewBox="0 0 12 12"><path d="M12 6.919l-6-4.657-6 4.657v-1.899l6-4.657 6 4.657zM10.5 6.75v4.5h-3v-3h-3v3h-3v-4.5l4.5-3.375z"/></symbol>
-<symbol id="defaultsonly--remove" viewBox="0 0 12 12"><path d="M9.375 1.5h-6.75c-0.621 0-1.125 0.504-1.125 1.125v0.375h9v-0.375c0-0.621-0.504-1.125-1.125-1.125zM7.41 0.75l0.165 1.184h-3.151l0.165-1.184h2.82zM7.5 0h-3c-0.309 0-0.598 0.251-0.64 0.557l-0.219 1.569c-0.043 0.306 0.175 0.557 0.485 0.557h3.75c0.309 0 0.527-0.251 0.485-0.557l-0.219-1.569c-0.043-0.306-0.331-0.557-0.64-0.557v0zM9.563 3.75h-7.125c-0.412 0-0.719 0.336-0.682 0.747l0.614 6.756c0.037 0.411 0.405 0.747 0.818 0.747h5.625c0.413 0 0.781-0.336 0.818-0.747l0.614-6.756c0.037-0.411-0.27-0.747-0.682-0.747zM4.5 10.5h-1.125l-0.375-5.25h1.5v5.25zM6.75 10.5h-1.5v-5.25h1.5v5.25zM8.625 10.5h-1.125v-5.25h1.5l-0.375 5.25z"/></symbol>
-</svg>
-            </div>
             <div data-folder="fullconfig">
-                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><symbol id="fullconfig--arrow-up" viewBox="0 0 30 43.168"><path d="M17.143,7.882v35.286h-4.286V7.882L3,17.634L0,14.7L14.143,0.755L15,0l0.857,0.755L30,14.7l-3,2.935L17.143,7.882L17.143,7.882z"/></symbol>
-<symbol id="fullconfig--home" viewBox="0 0 12 12"><path d="M12 6.919l-6-4.657-6 4.657v-1.899l6-4.657 6 4.657zM10.5 6.75v4.5h-3v-3h-3v3h-3v-4.5l4.5-3.375z"/></symbol>
-<symbol id="fullconfig--remove" viewBox="0 0 12 12"><path d="M9.375 1.5h-6.75c-0.621 0-1.125 0.504-1.125 1.125v0.375h9v-0.375c0-0.621-0.504-1.125-1.125-1.125zM7.41 0.75l0.165 1.184h-3.151l0.165-1.184h2.82zM7.5 0h-3c-0.309 0-0.598 0.251-0.64 0.557l-0.219 1.569c-0.043 0.306 0.175 0.557 0.485 0.557h3.75c0.309 0 0.527-0.251 0.485-0.557l-0.219-1.569c-0.043-0.306-0.331-0.557-0.64-0.557v0zM9.563 3.75h-7.125c-0.412 0-0.719 0.336-0.682 0.747l0.614 6.756c0.037 0.411 0.405 0.747 0.818 0.747h5.625c0.413 0 0.781-0.336 0.818-0.747l0.614-6.756c0.037-0.411-0.27-0.747-0.682-0.747zM4.5 10.5h-1.125l-0.375-5.25h1.5v5.25zM6.75 10.5h-1.5v-5.25h1.5v5.25zM8.625 10.5h-1.125v-5.25h1.5l-0.375 5.25z"/></symbol>
-</svg>
-            </div>
-            <div data-folder="noconfig">
-                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><symbol id="noconfig--arrow-up" viewBox="0 0 30 43.168"><path d="M17.143,7.882v35.286h-4.286V7.882L3,17.634L0,14.7L14.143,0.755L15,0l0.857,0.755L30,14.7l-3,2.935L17.143,7.882L17.143,7.882z"/></symbol>
-<symbol id="noconfig--home" viewBox="0 0 12 12"><path d="M12 6.919l-6-4.657-6 4.657v-1.899l6-4.657 6 4.657zM10.5 6.75v4.5h-3v-3h-3v3h-3v-4.5l4.5-3.375z"/></symbol>
-</svg>
-            </div>
-            <div data-folder="nodefaults">
-                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><symbol id="nodefaults--arrow-up" viewBox="0 0 30 43.168"><path d="M17.143,7.882v35.286h-4.286V7.882L3,17.634L0,14.7L14.143,0.755L15,0l0.857,0.755L30,14.7l-3,2.935L17.143,7.882L17.143,7.882z"/></symbol>
-<symbol id="nodefaults--home" viewBox="0 0 12 12"><path d="M12 6.919l-6-4.657-6 4.657v-1.899l6-4.657 6 4.657zM10.5 6.75v4.5h-3v-3h-3v3h-3v-4.5l4.5-3.375z"/></symbol>
+                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><symbol id="fullconfig--arrow-up" viewBox="0 0 30 43.168"><path d="M17.143,7.882v35.286h-4.286V7.882L3,17.634L0,14.7L14.143,0.755L15,0l0.857,0.755L30,14.7l-3,2.935L17.143,7.882L17.143,7.882z"></path></symbol>
+<symbol id="fullconfig--home" viewBox="0 0 12 12"><path d="M12 6.919l-6-4.657-6 4.657v-1.899l6-4.657 6 4.657zM10.5 6.75v4.5h-3v-3h-3v3h-3v-4.5l4.5-3.375z"></path></symbol>
+<symbol id="fullconfig--remove" viewBox="0 0 12 12"><path d="M9.375 1.5h-6.75c-0.621 0-1.125 0.504-1.125 1.125v0.375h9v-0.375c0-0.621-0.504-1.125-1.125-1.125zM7.41 0.75l0.165 1.184h-3.151l0.165-1.184h2.82zM7.5 0h-3c-0.309 0-0.598 0.251-0.64 0.557l-0.219 1.569c-0.043 0.306 0.175 0.557 0.485 0.557h3.75c0.309 0 0.527-0.251 0.485-0.557l-0.219-1.569c-0.043-0.306-0.331-0.557-0.64-0.557v0zM9.563 3.75h-7.125c-0.412 0-0.719 0.336-0.682 0.747l0.614 6.756c0.037 0.411 0.405 0.747 0.818 0.747h5.625c0.413 0 0.781-0.336 0.818-0.747l0.614-6.756c0.037-0.411-0.27-0.747-0.682-0.747zM4.5 10.5h-1.125l-0.375-5.25h1.5v5.25zM6.75 10.5h-1.5v-5.25h1.5v5.25zM8.625 10.5h-1.125v-5.25h1.5l-0.375 5.25z"></path></symbol>
 </svg>
             </div>
         </div>
     </div>
 
     <div class="wrapper">
-        <div id="result"><h4>Folder: colorize (2)</h4>Default color: pink <span class="color" style="background: pink"></span><ul class="icons-list"><li class="icons-list__item">
-    <h5 class="icons-list__title">#colorize--arrow-up <span class="sizes">30&times;43</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon colorize colorize--arrow-up"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#colorize--arrow-up"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon colorize colorize--arrow-up"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#colorize--arrow-up"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon colorize colorize--arrow-up"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#colorize--arrow-up"></svg></textarea>
+        <div id="result"><h4>Folder: fullconfig (12)</h4>Default color: orangered <span class='color' style='background: orangered'></span><ul class='icons-list'><li class="icons-list__item">
+    <h5 class="icons-list__title">#fullconfig--arrow-up <span class='sizes'>30&times;43</span></h5>
+    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--arrow-up"></svg></span>
+    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--arrow-up"></svg></span>
+    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--arrow-up"></svg></textarea>
 </li><li class="icons-list__item">
-    <h5 class="icons-list__title">#colorize--home <span class="sizes">12&times;12</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon colorize colorize--home"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#colorize--home"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon colorize colorize--home"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#colorize--home"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon colorize colorize--home"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#colorize--home"></svg></textarea>
-</li></ul><h4>Folder: defaultsandcolor (3)</h4>Default color: yellowgreen <span class="color" style="background: yellowgreen"></span><ul class="icons-list"><li class="icons-list__item">
-    <h5 class="icons-list__title">#defaultsandcolor--home <span class="sizes">63&times;63</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon defaultsandcolor defaultsandcolor--home"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#defaultsandcolor--home"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon defaultsandcolor defaultsandcolor--home"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#defaultsandcolor--home"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon defaultsandcolor defaultsandcolor--home"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#defaultsandcolor--home"></svg></textarea>
+    <h5 class="icons-list__title">#fullconfig--arrow-up--w50 <span class='sizes'>50&times;72</span></h5>
+    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up--w50"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--arrow-up"></svg></span>
+    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up--w50"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--arrow-up"></svg></span>
+    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up--w50"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--arrow-up"></svg></textarea>
 </li><li class="icons-list__item">
-    <h5 class="icons-list__title">#defaultsandcolor--arrow-up <span class="sizes">30&times;43</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon defaultsandcolor defaultsandcolor--arrow-up"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#defaultsandcolor--arrow-up"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon defaultsandcolor defaultsandcolor--arrow-up"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#defaultsandcolor--arrow-up"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon defaultsandcolor defaultsandcolor--arrow-up"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#defaultsandcolor--arrow-up"></svg></textarea>
+    <h5 class="icons-list__title">#fullconfig--arrow-up--green <span class='sizes'>30&times;43</span></h5>
+    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up--green"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--arrow-up"></svg></span>
+    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up--green"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--arrow-up"></svg></span>
+    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up--green"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--arrow-up"></svg></textarea>
 </li><li class="icons-list__item">
-    <h5 class="icons-list__title">#defaultsandcolor--remove <span class="sizes">12&times;12</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon defaultsandcolor defaultsandcolor--remove"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#defaultsandcolor--remove"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon defaultsandcolor defaultsandcolor--remove"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#defaultsandcolor--remove"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon defaultsandcolor defaultsandcolor--remove"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#defaultsandcolor--remove"></svg></textarea>
-</li></ul><h4>Folder: defaultsonly (3)</h4>Default color: none <span class="color" style="background: none"></span><ul class="icons-list"><li class="icons-list__item">
-    <h5 class="icons-list__title">#defaultsonly--home <span class="sizes">63&times;63</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon defaultsonly defaultsonly--home"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#defaultsonly--home"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon defaultsonly defaultsonly--home"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#defaultsonly--home"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon defaultsonly defaultsonly--home"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#defaultsonly--home"></svg></textarea>
+    <h5 class="icons-list__title">#fullconfig--arrow-up--w143--steelblue <span class='sizes'>143&times;206</span></h5>
+    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up--w143--steelblue"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--arrow-up"></svg></span>
+    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up--w143--steelblue"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--arrow-up"></svg></span>
+    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up--w143--steelblue"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--arrow-up"></svg></textarea>
 </li><li class="icons-list__item">
-    <h5 class="icons-list__title">#defaultsonly--arrow-up <span class="sizes">30&times;43</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon defaultsonly defaultsonly--arrow-up"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#defaultsonly--arrow-up"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon defaultsonly defaultsonly--arrow-up"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#defaultsonly--arrow-up"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon defaultsonly defaultsonly--arrow-up"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#defaultsonly--arrow-up"></svg></textarea>
+    <h5 class="icons-list__title">#fullconfig--home <span class='sizes'>42&times;42</span></h5>
+    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></span>
+    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></span>
+    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></textarea>
 </li><li class="icons-list__item">
-    <h5 class="icons-list__title">#defaultsonly--remove <span class="sizes">12&times;12</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon defaultsonly defaultsonly--remove"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#defaultsonly--remove"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon defaultsonly defaultsonly--remove"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#defaultsonly--remove"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon defaultsonly defaultsonly--remove"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#defaultsonly--remove"></svg></textarea>
-</li></ul><h4>Folder: fullconfig (12)</h4>Default color: orangered <span class="color" style="background: orangered"></span><ul class="icons-list"><li class="icons-list__item">
-    <h5 class="icons-list__title">#fullconfig--arrow-up <span class="sizes">30&times;43</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--arrow-up"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--arrow-up"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--arrow-up"></svg></textarea>
+    <h5 class="icons-list__title">#fullconfig--home--w150 <span class='sizes'>150&times;150</span></h5>
+    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--w150"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></span>
+    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--w150"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></span>
+    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--w150"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></textarea>
 </li><li class="icons-list__item">
-    <h5 class="icons-list__title">#fullconfig--arrow-up--w50 <span class="sizes">50&times;72</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up--w50"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--arrow-up"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up--w50"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--arrow-up"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up--w50"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--arrow-up"></svg></textarea>
+    <h5 class="icons-list__title">#fullconfig--home--hotpink <span class='sizes'>42&times;42</span></h5>
+    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--hotpink"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></span>
+    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--hotpink"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></span>
+    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--hotpink"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></textarea>
 </li><li class="icons-list__item">
-    <h5 class="icons-list__title">#fullconfig--arrow-up--green <span class="sizes">30&times;43</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up--green"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--arrow-up"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up--green"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--arrow-up"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up--green"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--arrow-up"></svg></textarea>
+    <h5 class="icons-list__title">#fullconfig--home--ff9900 <span class='sizes'>42&times;42</span></h5>
+    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--ff9900"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></span>
+    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--ff9900"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></span>
+    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--ff9900"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></textarea>
 </li><li class="icons-list__item">
-    <h5 class="icons-list__title">#fullconfig--arrow-up--w143--steelblue <span class="sizes">143&times;206</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up--w143--steelblue"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--arrow-up"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up--w143--steelblue"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--arrow-up"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--arrow-up--w143--steelblue"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--arrow-up"></svg></textarea>
+    <h5 class="icons-list__title">#fullconfig--home--336699 <span class='sizes'>42&times;42</span></h5>
+    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--336699"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></span>
+    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--336699"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></span>
+    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--336699"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></textarea>
 </li><li class="icons-list__item">
-    <h5 class="icons-list__title">#fullconfig--home <span class="sizes">42&times;42</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></textarea>
+    <h5 class="icons-list__title">#fullconfig--home--w170--teal <span class='sizes'>170&times;170</span></h5>
+    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--w170--teal"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></span>
+    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--w170--teal"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></span>
+    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--w170--teal"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></textarea>
 </li><li class="icons-list__item">
-    <h5 class="icons-list__title">#fullconfig--home--w150 <span class="sizes">150&times;150</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--w150"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--w150"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--w150"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></textarea>
+    <h5 class="icons-list__title">#fullconfig--home--h62--yellowgreen <span class='sizes'>62&times;62</span></h5>
+    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--h62--yellowgreen"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></span>
+    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--h62--yellowgreen"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></span>
+    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--h62--yellowgreen"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--home"></svg></textarea>
 </li><li class="icons-list__item">
-    <h5 class="icons-list__title">#fullconfig--home--hotpink <span class="sizes">42&times;42</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--hotpink"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--hotpink"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--hotpink"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></textarea>
-</li><li class="icons-list__item">
-    <h5 class="icons-list__title">#fullconfig--home--ff9900 <span class="sizes">42&times;42</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--ff9900"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--ff9900"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--ff9900"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></textarea>
-</li><li class="icons-list__item">
-    <h5 class="icons-list__title">#fullconfig--home--336699 <span class="sizes">42&times;42</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--336699"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--336699"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--336699"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></textarea>
-</li><li class="icons-list__item">
-    <h5 class="icons-list__title">#fullconfig--home--w170--teal <span class="sizes">170&times;170</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--w170--teal"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--w170--teal"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--w170--teal"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></textarea>
-</li><li class="icons-list__item">
-    <h5 class="icons-list__title">#fullconfig--home--h62--yellowgreen <span class="sizes">62&times;62</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--h62--yellowgreen"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--h62--yellowgreen"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--home--h62--yellowgreen"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--home"></svg></textarea>
-</li><li class="icons-list__item">
-    <h5 class="icons-list__title">#fullconfig--remove <span class="sizes">12&times;12</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--remove"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--remove"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--remove"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--remove"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--remove"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#fullconfig--remove"></svg></textarea>
-</li></ul><h4>Folder: noconfig (2)</h4>Default color: none <span class="color" style="background: none"></span><ul class="icons-list"><li class="icons-list__item">
-    <h5 class="icons-list__title">#noconfig--arrow-up <span class="sizes">30&times;43</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon noconfig noconfig--arrow-up"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#noconfig--arrow-up"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon noconfig noconfig--arrow-up"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#noconfig--arrow-up"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon noconfig noconfig--arrow-up"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#noconfig--arrow-up"></svg></textarea>
-</li><li class="icons-list__item">
-    <h5 class="icons-list__title">#noconfig--home <span class="sizes">12&times;12</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon noconfig noconfig--home"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#noconfig--home"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon noconfig noconfig--home"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#noconfig--home"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon noconfig noconfig--home"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#noconfig--home"></svg></textarea>
-</li></ul><h4>Folder: nodefaults (9)</h4>Default color: skyblue <span class="color" style="background: skyblue"></span><ul class="icons-list"><li class="icons-list__item">
-    <h5 class="icons-list__title">#nodefaults--arrow-up <span class="sizes">30&times;43</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--arrow-up"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--arrow-up"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--arrow-up"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--arrow-up"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--arrow-up"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--arrow-up"></svg></textarea>
-</li><li class="icons-list__item">
-    <h5 class="icons-list__title">#nodefaults--arrow-up--w40 <span class="sizes">40&times;58</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--arrow-up--w40"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--arrow-up"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--arrow-up--w40"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--arrow-up"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--arrow-up--w40"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--arrow-up"></svg></textarea>
-</li><li class="icons-list__item">
-    <h5 class="icons-list__title">#nodefaults--arrow-up--gold <span class="sizes">30&times;43</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--arrow-up--gold"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--arrow-up"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--arrow-up--gold"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--arrow-up"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--arrow-up--gold"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--arrow-up"></svg></textarea>
-</li><li class="icons-list__item">
-    <h5 class="icons-list__title">#nodefaults--arrow-up--w120--orange <span class="sizes">120&times;173</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--arrow-up--w120--orange"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--arrow-up"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--arrow-up--w120--orange"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--arrow-up"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--arrow-up--w120--orange"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--arrow-up"></svg></textarea>
-</li><li class="icons-list__item">
-    <h5 class="icons-list__title">#nodefaults--home <span class="sizes">12&times;12</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--home"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--home"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--home"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--home"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--home"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--home"></svg></textarea>
-</li><li class="icons-list__item">
-    <h5 class="icons-list__title">#nodefaults--home--w100 <span class="sizes">100&times;100</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--home--w100"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--home"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--home--w100"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--home"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--home--w100"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--home"></svg></textarea>
-</li><li class="icons-list__item">
-    <h5 class="icons-list__title">#nodefaults--home--yellowgreen <span class="sizes">12&times;12</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--home--yellowgreen"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--home"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--home--yellowgreen"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--home"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--home--yellowgreen"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--home"></svg></textarea>
-</li><li class="icons-list__item">
-    <h5 class="icons-list__title">#nodefaults--home--w70--pink <span class="sizes">70&times;70</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--home--w70--pink"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--home"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--home--w70--pink"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--home"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--home--w70--pink"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--home"></svg></textarea>
-</li><li class="icons-list__item">
-    <h5 class="icons-list__title">#nodefaults--home--w20--yellow <span class="sizes">20&times;20</span></h5>
-    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--home--w20--yellow"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--home"></svg></span>
-    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--home--w20--yellow"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--home"></svg></span>
-    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon nodefaults nodefaults--home--w20--yellow"  style=&quot;pointer-events: none; visibility: hidden;&quot;><use xlink:href="#nodefaults--home"></svg></textarea>
+    <h5 class="icons-list__title">#fullconfig--remove <span class='sizes'>12&times;12</span></h5>
+    <span class="demo-icon demo-icon--png ie8"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--remove"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--remove"></svg></span>
+    <span class="demo-icon demo-icon--svg"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--remove"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--remove"></svg></span>
+    <textarea class="textfield--code" spellcheck=\"false\"><svg xmlns="http://www.w3.org/2000/svg" class="svgicon fullconfig fullconfig--remove"  style=&#39;pointer-events: none; visibility: hidden;&#39;><use xlink:href="#fullconfig--remove"></svg></textarea>
 </li></ul></div>
     </div>
 

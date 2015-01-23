@@ -49,7 +49,7 @@ function closeTags(input) {
         }
     }
 
-    return input;
+    return output;
 }
 
 /**
