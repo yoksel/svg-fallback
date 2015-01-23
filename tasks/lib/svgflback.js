@@ -49,8 +49,10 @@ function closeTags(input) {
     var search = input.match(new RegExp('(<)(.*?)(' + unclosedTail + ')', 'g'));
 
     if ( search ){
-        var tagMatch = input.match(new RegExp('[a-z]{1,}'));
-        var tag = tagMatch[0];
+        var tagMatch = input.match(new RegExp('<[a-z]{1,}', 'g'));
+        var tag = tagMatch[tagMatch.length - 1];
+
+        tag = tag.replace(new RegExp('<', 'g'), '');
 
         if ( tag ) {
             var closedTail = '></' + tag + '>';
@@ -205,6 +207,7 @@ function getSVGAttrs(input) {
  */
 function getSVGBody(input) {
     input = input.replace(new RegExp("(<svg|</svg)(.*?)(>)", 'g'), "");
+
     input = closeTags(input);
 
     return input;
@@ -334,20 +337,28 @@ svgflback.processFolder = function(params) {
             "colorize": colorize
         };
 
-        if (color) {
+        if ( color ) {
             changesParams["defaultColor"] = color;
         }
 
         folderOptions = folderOptionsFile[configKey];
 
-        if (defaults && variations) {
+        if ( defaults && variations ) {
 
                 // 1. defaults
                 changesParams["inputFolder"] = inputFolder;
                 changesParams["outputFolder"] = "temp/";
                 changesParams["folderOptions"] = defaults;
 
+                if (configKey == "default-sizes"){
+                    svgmodify.colorize = false;
+                }
+                else {
+                    svgmodify.colorize = true;
+                }
                 svgmodify.makeChanges(changesParams);
+
+
 
                 // 2. variations
                 changesParams["inputFolder"] = "temp/" + folderName;
