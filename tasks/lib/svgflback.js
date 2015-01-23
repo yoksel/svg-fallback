@@ -21,10 +21,20 @@ function getFolder(filePath) {
  * @returns {string} clear svg-code
  */
 function clearInput(input) {
-    var output = input.replace(new RegExp("[\r\n\t]", "g"), "");
-    // remove xml tag and doctype
-    output = output.replace(new RegExp("(<)(.*?)(xml |dtd)(.*?)(>)", 'g'), "");
-    output = output.replace(new RegExp("(<g></g>)", 'g'), "");
+    var output = input.replace(new RegExp('([\r\n\t]|\s{2,})', 'g'), '');
+
+    output = output.replace(new RegExp('(<)(.*?)(xml |dtd)(.*?)(>)', 'g'), '');
+
+    output = output.replace(new RegExp('(<g></g>)', 'g'), '');
+    output = output.replace(new RegExp('(<defs></defs>)', 'g'), '');
+
+    output = output.replace(new RegExp('((<!--)(.*?)(-->))', 'g'), '');
+    output = output.replace(new RegExp('(<title>(.*?)</title>)', 'g'), '');
+    output = output.replace(new RegExp('(<desc>(.*?)</desc>)', 'g'), '');
+
+    output = output.replace(new RegExp('( sketch:type="(.*?)")', 'g'), '');
+    output = output.replace(new RegExp('( id="(.*?)")', 'g'), '');
+
     return output;
 }
 
@@ -48,6 +58,8 @@ function closeTags(input) {
             output = output.replace(new RegExp(unclosedTail, 'g'), closedTail);
         }
     }
+
+    console.log(output);
 
     return output;
 }
@@ -324,43 +336,41 @@ svgflback.processFolder = function(params) {
             "colorize": colorize
         };
 
-        // Has color and has no any configs
-        if (color && (!defaults && !variations)) {
-            // folder colorize
+        if (color) {
             changesParams["defaultColor"] = color;
-            svgmodify.makeChanges(changesParams);
-            return;
         }
 
         folderOptions = folderOptionsFile[configKey];
 
-        // if we need variations but they aren't exist, use defaults
-        if (!folderOptions && configKey === "icons" && defaults) {
-            folderOptions = defaults;
-        }
+        if (defaults && variations) {
 
-        if (folderOptions) {
+                // 1. defaults
+                changesParams["inputFolder"] = inputFolder;
+                changesParams["outputFolder"] = "temp/";
+                changesParams["folderOptions"] = defaults;
 
-            changesParams = {
-                "inputFolder": inputFolder,
-                "outputFolder": destFolder,
-                "folderOptions": folderOptions,
-                "colorize": colorize
-            };
+                svgmodify.makeChanges(changesParams);
 
-            if (configKey !== "default-sizes" && color) {
-                changesParams["defaultColor"] = color;
+                // 2. variations
+                changesParams["inputFolder"] = "temp/" + folderName;
+                changesParams["outputFolder"] = destFolder;
+                changesParams["folderOptions"] = variations;
+                changesParams["defaultColor"] = "";
+
+                svgmodify.makeChanges(changesParams);
+
+            } else {
+
+                if (defaults) {
+                    folderOptions = defaults;
+                } else if (variations) {
+                    folderOptions = variations;
+                }
+
+                changesParams["folderOptions"] = folderOptions;
+                svgmodify.makeChanges(changesParams);
             }
 
-            if (configKey !== "default-sizes" && defaults) {
-                changesParams["defaults"] = defaults;
-            }
-
-            svgmodify.makeChanges(changesParams);
-
-        } else {
-            copyFiles(inputFolder, destFolder + folderName);
-        }
     }); // end folders.forEach
 };
 

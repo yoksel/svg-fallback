@@ -24,7 +24,7 @@
     width: 150px;
     height: 150px;
     background-position: -333px 0;
-    fill: gold;
+    fill: orangered;
     }
 .fullconfig--arrow-up--w50 {
     width: 50px;
@@ -62,21 +62,15 @@
     background-position: -132px -216px;
     fill: #FF9900;
     }
-.fullconfig--home--336699 {
-    width: 42px;
-    height: 42px;
-    background-position: -184px -216px;
-    fill: #336699;
-    }
 .fullconfig--home {
     width: 42px;
     height: 42px;
-    background-position: -236px -216px;
-    fill: gold;
+    background-position: -184px -216px;
+    fill: orangered;
     }
 .fullconfig--remove {
     width: 12px;
     height: 12px;
     background-position: -465px -160px;
-    fill: gray;
+    fill: orangered;
     }

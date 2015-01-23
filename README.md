@@ -273,6 +273,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.2.3 — Fix colorizing. Improve clearing of SVG.
+
 0.2.2 — Fix closing tags.
 
 0.2.1 — Plugin find unclosed tags and close it. From now you can set particular folder from set using param `folder`.
