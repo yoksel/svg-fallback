@@ -59,8 +59,6 @@ function closeTags(input) {
         }
     }
 
-    console.log(output);
-
     return output;
 }
 
