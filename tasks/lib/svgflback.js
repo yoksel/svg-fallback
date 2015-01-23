@@ -321,6 +321,8 @@ svgflback.processFolder = function(params) {
         var folderOptionsFile = svgflback.config[folderName];
         var folderOptions = {};
 
+        svgmodify.colorize = true;
+
         // No options at all
         if (!folderOptionsFile) {
             copyFiles(inputFolder, destFolder + folderName);
@@ -353,12 +355,7 @@ svgflback.processFolder = function(params) {
                 if (configKey == "default-sizes"){
                     svgmodify.colorize = false;
                 }
-                else {
-                    svgmodify.colorize = true;
-                }
                 svgmodify.makeChanges(changesParams);
-
-
 
                 // 2. variations
                 changesParams["inputFolder"] = "temp/" + folderName;
