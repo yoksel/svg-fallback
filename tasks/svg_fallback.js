@@ -54,6 +54,7 @@ module.exports = function(grunt) {
         svgflback.resultCss = [];
         svgflback.resultIconsData = [];
         svgflback.resultHtml = '';
+        svgflback.closetags = options.closetags === false ? options.closetags : true;
 
         var cb = this.async();
 

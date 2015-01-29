@@ -49,15 +49,19 @@ function closeTags(input) {
     var search = input.match(new RegExp('(<)(.*?)(' + unclosedTail + ')', 'g'));
 
     if ( search ){
-        var tagMatch = input.match(new RegExp('<[a-z]{1,}', 'g'));
-        var tag = tagMatch[tagMatch.length - 1];
+        var tagMatch = input.match(new RegExp('<([a-z]{1,})(\\s{1,})(.*?)(/>)', 'g'));
 
-        tag = tag.replace(new RegExp('<', 'g'), '');
+        for (var i = 0; i < tagMatch.length; i++){
+            var tagMatchItem = tagMatch[i];
+            var tagMatchTagnameArray = tagMatchItem.match(new RegExp('[a-z]{1,}', 'g'));
+            var tagMatchTagname = tagMatchTagnameArray[0];
 
-        if ( tag ) {
-            var closedTail = '></' + tag + '>';
+            if ( tagMatchTagname ) {
+                var closedTail = '></' + tagMatchTagname + '>';
+                var tagMatchItemClosed = tagMatchItem.replace("/>", closedTail);
 
-            output = output.replace(new RegExp(unclosedTail, 'g'), closedTail);
+                output = output.replace(tagMatchItem, tagMatchItemClosed);
+            }
         }
     }
 
@@ -208,7 +212,9 @@ function getSVGAttrs(input) {
 function getSVGBody(input) {
     input = input.replace(new RegExp("(<svg|</svg)(.*?)(>)", 'g'), "");
 
-    input = closeTags(input);
+    if ( svgflback.closetags === true ){
+        input = closeTags(input);
+    }
 
     return input;
 }

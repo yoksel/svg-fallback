@@ -273,6 +273,10 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.2.8 — Fix closing tags. Use param 'closetags: false' to switch it off.
+
+0.2.7 — Fixes incorrect `\s`. Thanks @kizu.
+
 0.2.3 — Fix colorizing. Improve clearing of SVG.
 
 0.2.2 — Fix closing tags.
