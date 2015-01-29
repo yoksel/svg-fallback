@@ -21,7 +21,7 @@ function getFolder(filePath) {
  * @returns {string} clear svg-code
  */
 function clearInput(input) {
-    var output = input.replace(new RegExp('([\r\n\t]|\s{2,})', 'g'), '');
+    var output = input.replace(new RegExp('([\r\n\t]|\\s{2,})', 'g'), '');
 
     output = output.replace(new RegExp('(<)(.*?)(xml |dtd)(.*?)(>)', 'g'), '');
 
