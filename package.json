@@ -37,7 +37,8 @@
     "rimraf": "~2.2.8",
     "spritesmith": "^0.19.2",
     "svg-modify": "^0.0.12",
-    "svg-to-png": "^0.6.0"
+    "svg-to-png": "^0.6.0",
+    "postcss": "4.0.3"
   },
   "peerDependencies": {
     "grunt": "~0.4.5"
