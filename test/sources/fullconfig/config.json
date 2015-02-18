@@ -5,9 +5,9 @@
             "color": "blue"
         },
         "home": {
-            "height": "42",
-            "color": "gold"
+            "height": "42"
         }
+
     },
     "icons": {
         "arrow-up": [{
@@ -30,8 +30,6 @@
             "color": "hotpink"
         }, {
             "color": "#FF9900"
-        }, {
-            "color": "#336699"
         }]
     }
 
