@@ -273,6 +273,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.2.10 — Symbols with modifications removed from generated library.
+
 0.2.9 — Fix closing tags for files with &lt;style&gt; inside.
 
 0.2.8 — Fix closing tags. Use param 'closetags: false' to switch it off.

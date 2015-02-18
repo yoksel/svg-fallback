@@ -336,8 +336,12 @@ svgflback.processFolder = function(params) {
         }
 
         var defaults = folderOptionsFile["default-sizes"];
-        var variations = folderOptionsFile["icons"];
-        var color = folderOptionsFile["color"];
+        var variations;
+        var color;
+        if (configKey != "default-sizes") {
+            variations = folderOptionsFile["icons"];
+            color = folderOptionsFile["color"];
+        }
 
         var changesParams = {
             "inputFolder": inputFolder,
