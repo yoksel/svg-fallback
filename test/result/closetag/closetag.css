@@ -1,0 +1,19 @@
+.closetag {
+    display: inline-block;
+    background-image: url(closetag.png);
+    /* This hides bg-image in modern browsers except IE9 */
+    background: -webkit-linear-gradient(transparent, transparent);
+    background: linear-gradient(transparent, transparent);
+    /* This hides bg-image in IE9 */
+    background-position: -1000vh 0 !important;
+    }
+.closetag--test {
+    width: 19px;
+    height: 19px;
+    background-position: 0 0;
+    }
+.closetag--test2 {
+    width: 18px;
+    height: 18px;
+    background-position: -29px 0;
+    }
