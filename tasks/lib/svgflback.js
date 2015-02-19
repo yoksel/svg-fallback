@@ -46,13 +46,12 @@ function closeTags(input) {
     var output = input;
     var unclosedTail = "/>";
 
-    var search = input.match(new RegExp('(<)(.*?)(' + unclosedTail + ')', 'g'));
+    var search = input.match(new RegExp('<[^>]+?\/>', 'g'));
 
     if ( search ){
-        var tagMatch = input.match(new RegExp('<([a-z]{1,})(\\s{1,})(.*?)([/>])', 'g'));
 
-        for (var i = 0; i < tagMatch.length; i++){
-            var tagMatchItem = tagMatch[i];
+        for (var i = 0; i < search.length; i++){
+            var tagMatchItem = search[i];
             var tagMatchTagnameArray = tagMatchItem.match(new RegExp('[a-z]{1,}', 'g'));
             var tagMatchTagname = tagMatchTagnameArray[0];
 

@@ -273,6 +273,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.2.11 — Fix closing tags again.
+
 0.2.10 — Symbols with modifications removed from generated library.
 
 0.2.9 — Fix closing tags for files with &lt;style&gt; inside.
