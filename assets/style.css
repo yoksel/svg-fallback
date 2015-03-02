@@ -97,6 +97,10 @@ LI {
     margin-bottom: 1em;
     border: 1px solid #DDD;
     }
+    .demo-icon:hover {
+        color: #FFF;
+        background: #000;
+        }
     .demo-icon--svg {
         margin-right: 3em;
         }
