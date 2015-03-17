@@ -70,6 +70,13 @@ Default value: `10`
 
 List of spritesmith options is here: [npmjs.org/package/spritesmith](https://www.npmjs.org/package/spritesmith)
 
+#### options.pngfallback
+Type: `Bool`
+
+Default value: `true`
+
+Set `false` if you need SVG library only, without PNG fallback.
+
 #### options.svgclass
 Type: `String`
 

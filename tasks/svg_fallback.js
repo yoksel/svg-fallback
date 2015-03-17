@@ -35,6 +35,7 @@ module.exports = function(grunt) {
             folder = this.data.folder,
             options = this.options(),
             debug = options.debug,
+            pngfallback = typeof options.pngfallback === 'boolean' ? options.pngfallback : true,
             svgclass = options.svgclass ? options.svgclass : 'svg',
             svgstyle  = options.svgstyle ? options.svgstyle : '',
             usei8class = options.usei8class ? options.usei8class : false,
@@ -107,7 +108,10 @@ module.exports = function(grunt) {
             return;
         }
         //return null;
-        createPngByFoldersAsync();
+
+        if (pngfallback) {
+            createPngByFoldersAsync();
+        }
 
         // 4. Create sprite from png, write CSS
         //------------------------------------------
