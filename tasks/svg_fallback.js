@@ -350,6 +350,11 @@ module.exports = function(grunt) {
                 iconSvgTemplate = grunt.file.read(templatesFolder + '/icon--svg.html'),
                 iconItemTemplate = grunt.file.read(templatesFolder + '/icon--item.html');
 
+            // Sort icons alphabetically based on their name
+            items.sort(function(a, b){
+                return a.name.localeCompare(b.name);
+            });
+
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
                 var iconId = item.name;
