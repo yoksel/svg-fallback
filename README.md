@@ -86,6 +86,12 @@ Type: `Bool`
 Default value: `false`
 Set `true` if you need `.ie8` class only, without universal fallback for the most of old browsers
 
+#### options.movestyles
+Type: `Bool`
+
+Default value: `false`
+Set `true` if you need to move the content of embedded `<style>` tags to the icon's files, prefixed with their IDs, so there won't be conflicts for different icons.
+
 ### Usage Examples
 
 #### Default:

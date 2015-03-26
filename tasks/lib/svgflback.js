@@ -1,8 +1,10 @@
 var path = require("path"),
     svgmodify = require("svg-modify"),
+    postcss = require('postcss'),
     grunt = require("grunt");
 
 var svgflback = {};
+var styleRegexp = new RegExp('<style[^>]*>(.*?)</style>', 'g');
 
 svgflback.config = {};
 svgflback.configByFileName = {};
@@ -220,6 +222,47 @@ function getSVGBody(input) {
 
 /**
  * @param {string} input - SVG-code
+ * @returns {string} content of embedded styles from the "svg" file
+ */
+function getSVGStyles(input) {
+    var styles = '';
+    var match = '';
+    while (match != null) {
+        match = styleRegexp.exec(input);
+        if (match) {
+            styles += match[1];
+        }
+    }
+    return styles;
+}
+
+/**
+ * @param {string} input - SVG-code
+ * @returns {string} content of SVG-file without "style" tags
+ */
+function stripSVGStyles(input) {
+    input = input.replace(styleRegexp, "");
+
+    return input;
+}
+
+/**
+ * @param {string} input - CSS string
+ * @returns {string} CSS string with prefixed selectors
+ */
+function prefixSelectors(input, prefix) {
+    var parsed_input = postcss.parse(input);
+    parsed_input.eachRule(function (rule, i) {
+        rule.selectors = rule.selectors.map(function(selector){
+            // TODO: fix edge cases like with `:root` etc.
+            return '#' + prefix + ' ' + selector;
+        });
+    });
+    return parsed_input;
+}
+
+/**
+ * @param {string} input - SVG-code
  * @param {string} fileName
  * @returns {string} tag "symbol" with ID and viewBox
  */
@@ -238,7 +281,6 @@ function getSymbolHead(input, fileName) {
  * @returns {string} tag "symbol" with content
  */
 function createSymbol(input, from) {
-    var out = "";
     var symbolTail = "</symbol>";
 
     var folder = getFolder(from);
@@ -247,10 +289,19 @@ function createSymbol(input, from) {
     input = clearInput(input);
     var symbolHead = getSymbolHead(input, fileName);
     var symbolBody = getSVGBody(input);
+    var symbolStyles = '';
+    if (svgflback.moveStyles) {
+        symbolStyles = getSVGStyles(symbolBody);
+        if (symbolStyles) {
+            symbolBody = stripSVGStyles(symbolBody);
+        }
+    }
 
-    out = symbolHead + symbolBody + symbolTail;
-
-    return out;
+    return {
+        id: fileName,
+        content: symbolHead + symbolBody + symbolTail,
+        styles: symbolStyles
+    };
 }
 
 /**
@@ -259,16 +310,23 @@ function createSymbol(input, from) {
  */
 svgflback.createSvgLib = function(sources) {
     var svgSymbols = {};
+    var svgStyles = {};
 
     sources.forEach(function(filePath) {
 
         var folder = getFolder(filePath);
 
         if (!svgSymbols[folder]) {
-            svgSymbols[folder] = "";
+            svgSymbols[folder] = {
+                styles: "",
+                content: ""
+            };
         }
-
-        svgSymbols[folder] += createSymbol(grunt.file.read(filePath), filePath) + "\n";
+        var symbol = createSymbol(grunt.file.read(filePath), filePath);
+        if (svgflback.moveStyles && symbol.styles.length > 0) {
+            svgSymbols[folder].styles += prefixSelectors(symbol.styles, symbol.id) + "\n";
+        }
+        svgSymbols[folder].content += symbol.content + "\n";
     });
 
     grunt.log.writeln("----------------------------------");
@@ -279,11 +337,12 @@ svgflback.createSvgLib = function(sources) {
         grunt.file.mkdir(destSvgFolder);
 
         var destSvg = destSvgFolder + "/" + key + ".svg";
-        var symbolsSet = svgSymbols[key];
+        var symbolsSet = svgSymbols[key].content;
         var symbolsFile = "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display: none;\">" + symbolsSet + "</svg>";
         svgflback.resultSvg.push({
             "name": key,
-            "symbols": symbolsFile
+            "symbols": symbolsFile,
+            "styles": svgSymbols[key].styles
         }); // for index file
 
         grunt.file.write(destSvg, symbolsFile, "utf8");

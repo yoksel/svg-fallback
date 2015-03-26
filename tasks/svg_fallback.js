@@ -55,6 +55,7 @@ module.exports = function(grunt) {
         svgflback.resultIconsData = [];
         svgflback.resultHtml = '';
         svgflback.closetags = options.closetags === false ? options.closetags : true;
+        svgflback.moveStyles = options.movestyles === true ? options.movestyles : false;
 
         var cb = this.async();
 
@@ -320,6 +321,12 @@ module.exports = function(grunt) {
                 showPngCss += mustache.render(iconBgPosTemplate, iconData);
                 svgflback.resultHtml += mustache.render(iconItemTemplate, iconData);
                 iconsData.icons.push(iconData);
+            }
+
+            for (var i = 0; i < svgflback.resultSvg.length; i++) {
+                if (svgflback.resultSvg[i].name == folder && svgflback.resultSvg[i].styles) {
+                    outputCss += '\n' + svgflback.resultSvg[i].styles;
+                }
             }
 
             iconsData.icons = simsort.sortIconsToGroup(iconsData.icons);
