@@ -8,23 +8,17 @@
     background-position: -1000vh 0 !important;
     fill: skyblue;
     }
+.nodefaults--arrow-up--gold {
+    width: 30px;
+    height: 43px;
+    background-position: -130px -110px;
+    fill: gold;
+    }
 .nodefaults--arrow-up--w120--orange {
     width: 120px;
     height: 173px;
     background-position: 0 0;
     fill: orange;
-    }
-.nodefaults--home--w100 {
-    width: 100px;
-    height: 100px;
-    background-position: -130px 0;
-    fill: skyblue;
-    }
-.nodefaults--home--w70--pink {
-    width: 70px;
-    height: 70px;
-    background-position: -240px 0;
-    fill: pink;
     }
 .nodefaults--arrow-up--w40 {
     width: 40px;
@@ -32,16 +26,16 @@
     background-position: -240px -80px;
     fill: skyblue;
     }
-.nodefaults--arrow-up--gold {
-    width: 30px;
-    height: 43px;
-    background-position: -130px -110px;
-    fill: gold;
-    }
 .nodefaults--arrow-up {
     width: 30px;
     height: 43px;
     background-position: -170px -110px;
+    fill: skyblue;
+    }
+.nodefaults--home--w100 {
+    width: 100px;
+    height: 100px;
+    background-position: -130px 0;
     fill: skyblue;
     }
 .nodefaults--home--w20--yellow {
@@ -49,6 +43,12 @@
     height: 20px;
     background-position: -290px -80px;
     fill: yellow;
+    }
+.nodefaults--home--w70--pink {
+    width: 70px;
+    height: 70px;
+    background-position: -240px 0;
+    fill: pink;
     }
 .nodefaults--home--yellowgreen {
     width: 12px;

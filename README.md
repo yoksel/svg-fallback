@@ -279,6 +279,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+0.2.12 — Update spritesmith to 1.3.0. Add movestyles option (tnx @kizu).
+
 0.2.11 — Fix closing tags again.
 
 0.2.10 — Symbols with modifications removed from generated library.

@@ -107,7 +107,7 @@ module.exports = function(grunt) {
             grunt.log.error('SVG-files for converting to PNG not found.');
             return;
         }
-        //return null;
+
         createPngByFoldersAsync();
 
         // 4. Create sprite from png, write CSS
@@ -143,7 +143,7 @@ module.exports = function(grunt) {
 
         function convertToPngCallback(err) {
             if (err) {
-                grunt.log.errorlns('A folder failed to process\n\n');
+                grunt.log.errorlns('ERROR.\nA folder failed to process\n\n');
             } else {
                 createSpritesByFolders();
             }
@@ -163,7 +163,7 @@ module.exports = function(grunt) {
 
             var spritesmithParams = {
                 'src': pngFiles,
-                'engine': options.engine || 'auto',
+                'engine': options.engine || 'pixelsmith',
                 'algorithm': options.algorithm || 'binary-tree',
                 'padding': options.padding || 10,
                 'algorithmOpts': options.algorithmOpts || {},
@@ -185,7 +185,7 @@ module.exports = function(grunt) {
 
         function createSpriteCallback(err) {
             if (err) {
-                grunt.log.errorlns('A folder failed to process\n\n');
+                grunt.log.errorlns('ERROR.\n A folder ' + err + ' failed to process\n\n');
             } else {
 
                 if (!debug) {

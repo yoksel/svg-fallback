@@ -8,17 +8,47 @@
     background-position: -1000vh 0 !important;
     fill: orangered;
     }
+.fullconfig--arrow-up--green {
+    width: 30px;
+    height: 43px;
+    background-position: -72px -216px;
+    fill: green;
+    }
 .fullconfig--arrow-up--w143--steelblue {
     width: 143px;
     height: 206px;
     background-position: 0 0;
     fill: steelblue;
     }
-.fullconfig--home--w170--teal {
-    width: 170px;
-    height: 170px;
-    background-position: -153px 0;
-    fill: teal;
+.fullconfig--arrow-up--w50 {
+    width: 50px;
+    height: 72px;
+    background-position: 0 -288px;
+    fill: blue;
+    }
+.fullconfig--arrow-up {
+    width: 30px;
+    height: 43px;
+    background-position: -112px -216px;
+    fill: blue;
+    }
+.fullconfig--home--ff9900 {
+    width: 42px;
+    height: 42px;
+    background-position: -333px -160px;
+    fill: #FF9900;
+    }
+.fullconfig--home--h62--yellowgreen {
+    width: 62px;
+    height: 62px;
+    background-position: 0 -216px;
+    fill: yellowgreen;
+    }
+.fullconfig--home--hotpink {
+    width: 42px;
+    height: 42px;
+    background-position: -385px -160px;
+    fill: hotpink;
     }
 .fullconfig--home--w150 {
     width: 150px;
@@ -26,51 +56,21 @@
     background-position: -333px 0;
     fill: orangered;
     }
-.fullconfig--arrow-up--w50 {
-    width: 50px;
-    height: 72px;
-    background-position: 0 -216px;
-    fill: blue;
-    }
-.fullconfig--home--h62--yellowgreen {
-    width: 62px;
-    height: 62px;
-    background-position: -60px -216px;
-    fill: yellowgreen;
-    }
-.fullconfig--arrow-up {
-    width: 30px;
-    height: 43px;
-    background-position: -333px -160px;
-    fill: blue;
-    }
-.fullconfig--arrow-up--green {
-    width: 30px;
-    height: 43px;
-    background-position: -373px -160px;
-    fill: green;
-    }
-.fullconfig--home--hotpink {
-    width: 42px;
-    height: 42px;
-    background-position: -413px -160px;
-    fill: hotpink;
-    }
-.fullconfig--home--ff9900 {
-    width: 42px;
-    height: 42px;
-    background-position: -132px -216px;
-    fill: #FF9900;
+.fullconfig--home--w170--teal {
+    width: 170px;
+    height: 170px;
+    background-position: -153px 0;
+    fill: teal;
     }
 .fullconfig--home {
     width: 42px;
     height: 42px;
-    background-position: -184px -216px;
+    background-position: -437px -160px;
     fill: orangered;
     }
 .fullconfig--remove {
     width: 12px;
     height: 12px;
-    background-position: -465px -160px;
+    background-position: -153px -180px;
     fill: orangered;
     }
