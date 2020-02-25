@@ -33,7 +33,7 @@
   "dependencies": {
     "async": "^0.9.0",
     "mustache": "^0.8.2",
-    "open": "0.0.5",
+    "open": "7.0.2",
     "postcss": "4.0.3",
     "rimraf": "~2.2.8",
     "spritesmith": "^1.3.0",
