@@ -1,4 +1,4 @@
-# svg_fallback
+# [NOT SUPPORTED] svg_fallback
 
 Generates SVG library and PNG+CSS fallback.
 
